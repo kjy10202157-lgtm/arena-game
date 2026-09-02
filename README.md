@@ -40,6 +40,12 @@ python3 -m http.server 8000
 3. Branch는 `main`, 폴더는 `/ (root)`를 선택하고 저장합니다.
 4. 배포가 끝나면 표시되는 주소에서 게임을 실행할 수 있습니다.
 
+## 앱으로 설치
+
+GitHub Pages 주소를 Android Chrome에서 연 뒤 메뉴의 **앱 설치** 또는 **홈 화면에 추가**를 선택합니다. 설치 후에는 전체화면으로 실행되며, 한 번 불러온 게임은 오프라인에서도 실행할 수 있습니다.
+
+Google Play 출시 준비 자료는 `play-store` 폴더에 있습니다. 현재는 PWA와 출시용 설정 초안까지 준비되어 있으며, 최종 AAB 빌드와 서명은 PC 및 만 18세 이상 소유자의 Play Console 계정이 필요합니다.
+
 ## 파일 구조
 
 ```text
@@ -47,6 +53,11 @@ arena-game/
 ├── index.html
 ├── style.css
 ├── game.js
+├── manifest.webmanifest
+├── service-worker.js
+├── privacy.html
+├── icons/
+├── play-store/
 └── README.md
 ```
 

@@ -1,0 +1,17 @@
+{
+  "name": "NEON CLASH — 3v3 Arena",
+  "short_name": "NEON CLASH",
+  "description": "모바일과 PC에서 즐기는 빠른 3대3 아레나 슈팅 게임",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#080b18",
+  "theme_color": "#080b18",
+  "lang": "ko-KR",
+  "categories": ["games", "action"],
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}
