@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#080b18">
+  <meta name="description" content="모바일과 PC에서 즐기는 3대3 브라우저 아레나 게임">
+  <title>NEON CLASH</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="game-shell">
+    <canvas id="game" aria-label="3대3 아레나 게임 화면"></canvas>
+    <header id="hud" aria-live="polite">
+      <div class="team blue"><span>BLUE</span><strong id="blue-score">0</strong></div>
+      <div class="match"><span id="timer">02:00</span><small>먼저 10점</small></div>
+      <div class="team red"><strong id="red-score">0</strong><span>RED</span></div>
+    </header>
+    <section id="status"><div><span>HP</span><strong id="hp-text">100</strong></div><div class="track"><i id="health-fill"></i></div><p id="respawn-text"></p></section>
+    <button id="pause-button" type="button" aria-label="일시정지">Ⅱ</button>
+    <section id="mobile-controls" aria-label="모바일 조작">
+      <div id="move-stick" class="stick"><div class="knob"></div><span>이동</span></div>
+      <div id="aim-stick" class="stick aim"><div class="knob"></div><span>조준 · 공격</span></div>
+    </section>
+    <section id="start-screen" class="overlay visible"><div class="panel">
+      <div class="eyebrow">3 VS 3 ARENA</div><h1>NEON<br><em>CLASH</em></h1><p>팀과 함께 먼저 10점을 차지하세요.</p>
+      <div class="hint"><span class="desktop-hint">WASD 이동 · 마우스 조준/공격</span><span class="mobile-hint">왼쪽 이동 · 오른쪽 조준/공격</span></div>
+      <button id="start-button" type="button">게임 시작</button>
+    </div></section>
+    <section id="pause-screen" class="overlay"><div class="panel compact"><div class="eyebrow">PAUSED</div><h2>잠시 멈춤</h2><button id="resume-button" type="button">계속하기</button><button id="restart-button" class="secondary" type="button">처음부터</button></div></section>
+    <section id="result-screen" class="overlay"><div class="panel compact"><div class="eyebrow">MATCH OVER</div><h2 id="result-title">승리!</h2><p id="result-score"></p><button id="play-again-button" type="button">다시 플레이</button></div></section>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
