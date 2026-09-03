@@ -6,6 +6,22 @@
 @media (max-height:520px) and (orientation:landscape){#hud{top:8px;width:min(70vw,440px)}#status{top:66px}#pause-button{top:60px}.stick{width:104px;height:104px;bottom:12px}.knob{width:46px;height:46px}.panel{padding:22px 28px}.panel h1{font-size:3.2rem}.panel p{margin:10px 0 12px}.hint{margin-bottom:14px}}
 
 #class-select{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}.class-card{min-height:86px!important;margin:0!important;padding:10px 7px;border:1px solid #ffffff1f!important;color:#cbd5f5!important;background:#ffffff0a!important;box-shadow:none!important}.class-card b{display:block;font-size:.9rem}.class-card small{display:block;margin-top:6px;color:#8793b5;font-size:.67rem;line-height:1.35}.class-card.selected{border-color:#42d8ff!important;color:#fff!important;background:#42d8ff1c!important;box-shadow:0 0 18px #42d8ff24!important}.class-card.selected small{color:#bdefff}
+.best-record,.result-best{margin:0 0 14px;padding:10px 14px;border:1px solid #ffd45c40;border-radius:12px;color:#dce5ff;background:#ffd45c0d;font-size:.9rem}.best-record strong,.result-best{color:#ffd45c}.result-best.new-record{box-shadow:0 0 24px #ffd45c35;animation:record-pop .55s ease-out}@keyframes record-pop{0%{transform:scale(.88)}65%{transform:scale(1.06)}100%{transform:scale(1)}}
 #ability-button{position:fixed;z-index:7;right:max(44px,calc(env(safe-area-inset-right) + 22px));bottom:max(172px,calc(env(safe-area-inset-bottom) + 155px));display:grid;place-items:center;width:82px;height:82px;padding:6px;border:2px solid #73e8ff66;border-radius:50%;overflow:hidden;color:#fff;background:#0b183acc;box-shadow:0 0 24px #42d8ff33;backdrop-filter:blur(8px)}#ability-button strong{font-size:1.55rem;line-height:1}#ability-button span{font-size:.62rem;font-weight:900;white-space:nowrap}#ability-button i{position:absolute;inset:auto 0 0;height:0;background:#050711bf;transition:height .1s linear}#ability-button.ready{animation:abilityPulse 1.3s infinite}#ability-button:disabled{filter:grayscale(.7);opacity:.7}@keyframes abilityPulse{50%{box-shadow:0 0 34px #42d8ff99}}
 @media(pointer:fine){#ability-button{right:22px;bottom:24px;width:92px;height:92px}#ability-key:after{content:'  E';font-size:.7rem}}
-@media(max-height:520px) and (orientation:landscape){#ability-button{right:145px;bottom:24px;width:68px;height:68px}#ability-button strong{font-size:1.2rem}#class-select{margin:10px 0}.class-card{min-height:66px!important}.class-card small{display:none}}
+@media(max-height:520px) and (orientation:landscape){
+  #ability-button{right:145px;bottom:24px;width:68px;height:68px}
+  #ability-button strong{font-size:1.2rem}
+  .overlay{padding:8px;overflow-y:auto}
+  .panel{width:min(94vw,720px);max-height:none;padding:12px 20px;border-radius:20px}
+  .eyebrow{font-size:.65rem}
+  .panel h1{margin:5px 0;font-size:2.25rem;line-height:.82}
+  .panel p{margin:6px 0 8px;font-size:.78rem}
+  #class-select{margin:7px 0}
+  .class-card{min-height:62px!important;padding:6px!important}
+  .class-card b{font-size:.78rem}
+  .class-card small{display:block;margin-top:2px;font-size:.58rem;line-height:1.2}
+  .best-record{margin-bottom:6px;padding:6px;font-size:.74rem}
+  .hint{margin-bottom:6px;padding:7px;font-size:.7rem}
+  .panel #start-button{min-height:42px;margin-top:5px}
+}
