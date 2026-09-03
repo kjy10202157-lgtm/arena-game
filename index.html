@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
   <main id="game-shell">
@@ -37,13 +37,14 @@
         <button class="class-card" data-class="tank" type="button"><b>🛡️ 탱커형</b><small>높은 체력과 방어<br>필살기: 보호막</small></button>
         <button class="class-card" data-class="sniper" type="button"><b>🎯 저격형</b><small>느리지만 강한 공격<br>필살기: 관통탄</small></button>
       </div>
+      <div class="best-record">🏆 최고 기록 <strong id="best-score">0점</strong></div>
       <div class="hint"><span class="desktop-hint">WASD 이동 · 마우스 조준/공격</span><span class="mobile-hint">왼쪽 이동 · 오른쪽 조준/공격</span></div>
       <button id="start-button" type="button">게임 시작</button>
     </div></section>
     <section id="pause-screen" class="overlay"><div class="panel compact"><div class="eyebrow">PAUSED</div><h2>잠시 멈춤</h2><button id="resume-button" type="button">계속하기</button><button id="restart-button" class="secondary" type="button">처음부터</button></div></section>
-    <section id="result-screen" class="overlay"><div class="panel compact"><div class="eyebrow">MATCH OVER</div><h2 id="result-title">승리!</h2><p id="result-score"></p><button id="play-again-button" type="button">다시 플레이</button></div></section>
+    <section id="result-screen" class="overlay"><div class="panel compact"><div class="eyebrow">MATCH OVER</div><h2 id="result-title">승리!</h2><p id="result-score"></p><div id="result-best" class="result-best">🏆 최고 기록 0점</div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
   </main>
-  <script src="game.js"></script>
+  <script src="game.js?v=6"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
