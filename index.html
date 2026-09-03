@@ -13,14 +13,14 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="stylesheet" href="style.css?v=10">
+  <link rel="stylesheet" href="style.css?v=11">
 </head>
 <body>
   <main id="game-shell">
     <canvas id="game" aria-label="3대3 아레나 게임 화면"></canvas>
     <header id="hud" aria-live="polite">
       <div class="team blue"><span>BLUE</span><strong id="blue-score">0</strong></div>
-      <div class="match"><span id="timer">02:00</span><small>먼저 10점</small></div>
+      <div class="match"><span id="timer">02:00</span><small id="map-label">네온 공장</small></div>
       <div class="team red"><strong id="red-score">0</strong><span>RED</span></div>
     </header>
     <section id="status"><div><span id="class-label">돌격형 · HP</span><strong id="hp-text">100</strong></div><div class="track"><i id="health-fill"></i></div><p id="skill-progress">스킬 LV.1 · 다음 강화까지 3킬</p><p id="respawn-text"></p></section>
@@ -36,6 +36,11 @@
         <button class="class-card selected" data-class="assault" type="button"><b>⚡ 돌격형</b><small>빠른 이동과 연사<br>필살기: 오버드라이브</small></button>
         <button class="class-card" data-class="tank" type="button"><b>🛡️ 탱커형</b><small>높은 체력과 방어<br>필살기: 보호막</small></button>
         <button class="class-card" data-class="sniper" type="button"><b>🎯 저격형</b><small>느리지만 강한 공격<br>필살기: 관통탄</small></button>
+      </div>
+      <div id="map-select" aria-label="맵 선택">
+        <button class="map-card selected" data-map="factory" type="button"><b>🏭 네온 공장</b><small>엄폐물이 많은 균형형</small></button>
+        <button class="map-card" data-map="crossfire" type="button"><b>✦ 크로스 광장</b><small>중앙 교전 중심</small></button>
+        <button class="map-card" data-map="corridor" type="button"><b>▦ 트윈 통로</b><small>좁은 길과 장거리 전투</small></button>
       </div>
       <div class="best-record">⚡ 최단 승리 <strong id="best-time">기록 없음</strong></div>
       <div class="hint"><span class="desktop-hint">WASD 이동 · 마우스 조준/공격</span><span class="mobile-hint">왼쪽 이동 · 오른쪽 조준/공격</span></div>
@@ -59,7 +64,7 @@
       </div>
       <div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
   </main>
-  <script src="game.js?v=10"></script>
+  <script src="game.js?v=11"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
