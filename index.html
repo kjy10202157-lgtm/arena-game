@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="stylesheet" href="style.css?v=9">
+  <link rel="stylesheet" href="style.css?v=10">
 </head>
 <body>
   <main id="game-shell">
@@ -39,9 +39,15 @@
       </div>
       <div class="best-record">⚡ 최단 승리 <strong id="best-time">기록 없음</strong></div>
       <div class="hint"><span class="desktop-hint">WASD 이동 · 마우스 조준/공격</span><span class="mobile-hint">왼쪽 이동 · 오른쪽 조준/공격</span></div>
-      <button id="start-button" type="button">게임 시작</button>
+      <div class="start-actions"><button id="start-button" type="button">게임 시작</button><button id="start-settings-button" class="secondary" type="button">⚙ 설정</button></div>
     </div></section>
-    <section id="pause-screen" class="overlay"><div class="panel compact"><div class="eyebrow">PAUSED</div><h2>잠시 멈춤</h2><button id="resume-button" type="button">계속하기</button><button id="restart-button" class="secondary" type="button">처음부터</button></div></section>
+    <section id="pause-screen" class="overlay"><div class="panel compact"><div class="eyebrow">PAUSED</div><h2>일시정지</h2><button id="resume-button" type="button">계속하기</button><button id="pause-settings-button" class="secondary" type="button">⚙ 설정</button><button id="restart-button" class="secondary" type="button">경기 다시 시작</button></div></section>
+    <section id="settings-screen" class="overlay"><div class="panel compact settings-panel"><div class="eyebrow">SETTINGS</div><h2>게임 설정</h2>
+      <div class="setting-row"><div><strong>난이도</strong><small>적의 속도와 공격력이 달라집니다.</small></div><div class="choice-group" id="difficulty-options"><button data-value="easy" type="button">쉬움</button><button data-value="normal" type="button">보통</button><button data-value="hard" type="button">어려움</button></div></div>
+      <div class="setting-row inline"><div><strong>화면 흔들림</strong><small>피격 효과를 켜거나 끕니다.</small></div><button id="shake-toggle" class="toggle-button" type="button">켜짐</button></div>
+      <div class="setting-row inline"><div><strong>진동</strong><small>지원되는 기기에서 작동합니다.</small></div><button id="vibration-toggle" class="toggle-button" type="button">켜짐</button></div>
+      <button id="settings-back-button" type="button">확인</button>
+    </div></section>
     <section id="result-screen" class="overlay"><div class="panel compact result-panel"><div class="eyebrow">MATCH OVER</div><h2 id="result-title">승리!</h2><p id="result-score"></p>
       <div class="result-stats" aria-label="경기 통계">
         <div><span>경기 시간</span><strong id="stat-time">0.0초</strong></div>
@@ -53,7 +59,7 @@
       </div>
       <div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
   </main>
-  <script src="game.js?v=9"></script>
+  <script src="game.js?v=10"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
