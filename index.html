@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="stylesheet" href="style.css?v=8">
+  <link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
   <main id="game-shell">
@@ -23,7 +23,7 @@
       <div class="match"><span id="timer">02:00</span><small>먼저 10점</small></div>
       <div class="team red"><strong id="red-score">0</strong><span>RED</span></div>
     </header>
-    <section id="status"><div><span id="class-label">돌격형 · HP</span><strong id="hp-text">100</strong></div><div class="track"><i id="health-fill"></i></div><p id="respawn-text"></p></section>
+    <section id="status"><div><span id="class-label">돌격형 · HP</span><strong id="hp-text">100</strong></div><div class="track"><i id="health-fill"></i></div><p id="skill-progress">스킬 LV.1 · 다음 강화까지 3킬</p><p id="respawn-text"></p></section>
     <button id="pause-button" type="button" aria-label="일시정지">Ⅱ</button>
     <button id="ability-button" type="button" aria-label="필살기 사용"><strong id="ability-key">⚡</strong><span id="ability-name">오버드라이브</span><i id="ability-cooldown"></i></button>
     <section id="mobile-controls" aria-label="모바일 조작">
@@ -53,7 +53,7 @@
       </div>
       <div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
   </main>
-  <script src="game.js?v=8"></script>
+  <script src="game.js?v=9"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
