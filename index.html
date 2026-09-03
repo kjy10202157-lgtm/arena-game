@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="stylesheet" href="style.css?v=7">
+  <link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
   <main id="game-shell">
@@ -42,9 +42,18 @@
       <button id="start-button" type="button">게임 시작</button>
     </div></section>
     <section id="pause-screen" class="overlay"><div class="panel compact"><div class="eyebrow">PAUSED</div><h2>잠시 멈춤</h2><button id="resume-button" type="button">계속하기</button><button id="restart-button" class="secondary" type="button">처음부터</button></div></section>
-    <section id="result-screen" class="overlay"><div class="panel compact"><div class="eyebrow">MATCH OVER</div><h2 id="result-title">승리!</h2><p id="result-score"></p><div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
+    <section id="result-screen" class="overlay"><div class="panel compact result-panel"><div class="eyebrow">MATCH OVER</div><h2 id="result-title">승리!</h2><p id="result-score"></p>
+      <div class="result-stats" aria-label="경기 통계">
+        <div><span>경기 시간</span><strong id="stat-time">0.0초</strong></div>
+        <div><span>처치</span><strong id="stat-kills">0</strong></div>
+        <div><span>사망</span><strong id="stat-deaths">0</strong></div>
+        <div><span>발사</span><strong id="stat-shots">0</strong></div>
+        <div><span>명중률</span><strong id="stat-accuracy">0%</strong></div>
+        <div><span>가한 피해</span><strong id="stat-damage">0</strong></div>
+      </div>
+      <div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
   </main>
-  <script src="game.js?v=7"></script>
+  <script src="game.js?v=8"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
