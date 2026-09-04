@@ -40,4 +40,4 @@
   .result-panel #play-again-button{min-height:40px;margin-top:4px}
   .settings-panel{width:min(94vw,620px);padding:10px 18px}.settings-panel h2{margin:2px 0;font-size:1.5rem}.setting-row{margin:5px 0;padding:7px}.setting-row small{font-size:.58rem}.choice-group{margin-top:5px}.settings-panel .choice-group button,.settings-panel .toggle-button{min-height:34px}.settings-panel #settings-back-button{min-height:38px;margin-top:5px}
 }
-#status #skill-progress{color:#ffd45c}
+#status #skill-progress{color:#ffd45c}.difficulty-help{margin:8px 0 0!important;color:#a9b6d8!important;font-size:.68rem!important;line-height:1.4!important}
