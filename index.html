@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="stylesheet" href="style.css?v=16">
+  <link rel="stylesheet" href="style.css?v=17">
 </head>
 <body>
   <main id="game-shell">
@@ -74,7 +74,6 @@
     </div></section>
     <section id="mission-screen" class="overlay"><div class="panel mission-panel"><div class="eyebrow">CHALLENGES</div><h2>미션과 업적</h2>
       <div class="mission-wallet">보유 코인 <strong>🪙 <span id="mission-coin-balance">0</span></strong></div>
-      <h3>미션 <small>달성 후 보상을 받으세요</small></h3>
       <div id="mission-list" class="mission-list" aria-label="미션 목록"></div>
       <h3>업적 <small>플레이 기록으로 자동 해금</small></h3>
       <div id="achievement-list" class="achievement-list" aria-label="업적 목록"></div>
@@ -91,7 +90,7 @@
       </div>
       <div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><div id="result-coins" class="result-coins">🪙 +0 네온 코인</div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
   </main>
-  <script src="game.js?v=16"></script>
+  <script src="game.js?v=17"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
