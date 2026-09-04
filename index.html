@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="style.css?v=13">
 </head>
 <body>
   <main id="game-shell">
@@ -23,7 +23,7 @@
       <div class="match"><span id="timer">02:00</span><small id="map-label">네온 공장</small></div>
       <div class="team red"><strong id="red-score">0</strong><span>RED</span></div>
     </header>
-    <section id="status"><div><span id="class-label">돌격형 · HP</span><strong id="hp-text">100</strong></div><div class="track"><i id="health-fill"></i></div><p id="skill-progress">스킬 LV.1 · 다음 강화까지 3킬</p><p id="respawn-text"></p></section>
+    <section id="status"><div><span id="class-label">돌격형 · HP</span><strong id="hp-text">100</strong></div><div class="track"><i id="health-fill"></i></div><p id="mode-status">3대3 클래식 · 먼저 10점</p><p id="skill-progress">스킬 LV.1 · 다음 강화까지 3킬</p><p id="respawn-text"></p></section>
     <button id="pause-button" type="button" aria-label="일시정지">Ⅱ</button>
     <button id="ability-button" type="button" aria-label="필살기 사용"><strong id="ability-key">⚡</strong><span id="ability-name">오버드라이브</span><i id="ability-cooldown"></i></button>
     <section id="mobile-controls" aria-label="모바일 조작">
@@ -41,6 +41,11 @@
         <button class="map-card selected" data-map="factory" type="button"><b>🏭 네온 공장</b><small>엄폐물이 많은 균형형</small></button>
         <button class="map-card" data-map="crossfire" type="button"><b>✦ 크로스 광장</b><small>중앙 교전 중심</small></button>
         <button class="map-card" data-map="corridor" type="button"><b>▦ 트윈 통로</b><small>좁은 길과 장거리 전투</small></button>
+      </div>
+      <div id="mode-select" aria-label="게임 모드 선택">
+        <button class="mode-card selected" data-mode="classic" type="button"><b>⚔ 3대3</b><small>먼저 10점</small></button>
+        <button class="mode-card" data-mode="wave" type="button"><b>🌊 웨이브</b><small>5단계 생존</small></button>
+        <button class="mode-card" data-mode="boss" type="button"><b>👑 보스전</b><small>가디언 격파</small></button>
       </div>
       <div class="best-record">⚡ 최단 승리 <strong id="best-time">기록 없음</strong></div>
       <div class="hint"><span class="desktop-hint">WASD 이동 · 마우스 조준/공격</span><span class="mobile-hint">왼쪽 이동 · 오른쪽 조준/공격</span></div>
@@ -64,7 +69,7 @@
       </div>
       <div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
   </main>
-  <script src="game.js?v=12"></script>
+  <script src="game.js?v=13"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
