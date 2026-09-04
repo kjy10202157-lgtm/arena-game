@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="stylesheet" href="style.css?v=17">
+  <link rel="stylesheet" href="style.css?v=18">
 </head>
 <body>
   <main id="game-shell">
@@ -24,6 +24,7 @@
       <div class="team red"><strong id="red-score">0</strong><span>RED</span></div>
     </header>
     <section id="status"><div><span id="class-label">돌격형 · HP</span><strong id="hp-text">100</strong></div><div class="track"><i id="health-fill"></i></div><p id="mode-status">3대3 클래식 · 먼저 10점</p><p id="skill-progress">스킬 LV.1 · 다음 강화까지 3킬</p><p id="respawn-text"></p></section>
+    <section id="boss-hud" aria-live="polite"><div><strong>👑 네온 가디언</strong><span id="boss-phase">PHASE 1</span></div><div class="boss-track"><i id="boss-health-fill"></i></div></section>
     <button id="pause-button" type="button" aria-label="일시정지">Ⅱ</button>
     <button id="ability-button" type="button" aria-label="필살기 사용"><strong id="ability-key">⚡</strong><span id="ability-name">오버드라이브</span><i id="ability-cooldown"></i></button>
     <section id="mobile-controls" aria-label="모바일 조작">
@@ -45,7 +46,7 @@
       <div id="mode-select" aria-label="게임 모드 선택">
         <button class="mode-card selected" data-mode="classic" type="button"><b>⚔ 3대3</b><small>먼저 10점</small></button>
         <button class="mode-card" data-mode="wave" type="button"><b>🌊 웨이브</b><small>5단계 생존</small></button>
-        <button class="mode-card" data-mode="boss" type="button"><b>👑 보스전</b><small>가디언 격파</small></button>
+        <button class="mode-card" data-mode="boss" type="button"><b>👑 보스전</b><small>3페이즈 공략</small></button>
       </div>
       <div class="start-records"><div class="best-record">⚡ 최단 승리 <strong id="best-time">기록 없음</strong></div><div class="coin-wallet">🪙 <strong id="coin-balance">0</strong></div></div>
       <div class="hint"><span class="desktop-hint">WASD 이동 · 마우스 조준/공격</span><span class="mobile-hint">왼쪽 이동 · 오른쪽 조준/공격</span></div>
@@ -90,7 +91,7 @@
       </div>
       <div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><div id="result-coins" class="result-coins">🪙 +0 네온 코인</div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
   </main>
-  <script src="game.js?v=17"></script>
+  <script src="game.js?v=18"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
