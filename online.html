@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#080b18">
+  <title>NEON CLASH · ONLINE</title>
+  <link rel="stylesheet" href="online.css?v=19">
+</head>
+<body>
+  <main id="online-shell">
+    <canvas id="online-game" aria-label="2인 온라인 아레나 게임"></canvas>
+    <header id="online-hud"><strong class="blue">BLUE <span id="online-blue">0</span></strong><div><span id="online-timer">02:00</span><small id="network-state">연결 준비</small></div><strong class="red"><span id="online-red">0</span> RED</strong></header>
+    <section id="online-lobby" class="online-overlay visible"><div class="online-panel">
+      <div class="online-eyebrow">P2P ONLINE · BETA</div><h1>친구 대전</h1><p>친구와 같은 화면을 열고 방 코드로 연결하세요.<br>사람 2명과 AI 4명이 3대3로 대결합니다.</p>
+      <div class="online-roles"><button class="selected" data-role="assault" type="button">⚡ 돌격형</button><button data-role="tank" type="button">🛡️ 탱커형</button><button data-role="sniper" type="button">🎯 저격형</button></div>
+      <button id="create-room" type="button">방 만들기</button>
+      <div class="online-divider"><span>또는</span></div>
+      <label for="room-code">친구의 방 코드</label><div class="join-row"><input id="room-code" maxlength="6" autocomplete="off" inputmode="text" placeholder="6자리 코드"><button id="join-room" type="button">참가</button></div>
+      <div id="room-result" class="room-result">방을 만들거나 코드를 입력하세요.</div>
+      <button id="online-start" type="button" disabled>친구와 경기 시작</button><a href="index.html">← 싱글플레이로 돌아가기</a>
+      <small class="beta-note">시험판에서는 방장이 나가면 경기가 종료되며 일부 공용 Wi-Fi에서는 연결되지 않을 수 있습니다.</small>
+    </div></section>
+    <section id="online-result" class="online-overlay"><div class="online-panel compact"><div class="online-eyebrow">MATCH OVER</div><h2 id="online-result-title">경기 종료</h2><p id="online-result-score"></p><button id="online-again" type="button">로비로 돌아가기</button></div></section>
+    <section id="online-controls" aria-label="모바일 조작"><div id="online-move" class="online-stick"><i></i><span>이동</span></div><div id="online-aim" class="online-stick aim"><i></i><span>조준 · 공격</span></div></section>
+  </main>
+  <script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
+  <script src="online.js?v=19"></script>
+</body>
+</html>

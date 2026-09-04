@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="stylesheet" href="style.css?v=18">
+  <link rel="stylesheet" href="style.css?v=19">
 </head>
 <body>
   <main id="game-shell">
@@ -51,6 +51,7 @@
       <div class="start-records"><div class="best-record">⚡ 최단 승리 <strong id="best-time">기록 없음</strong></div><div class="coin-wallet">🪙 <strong id="coin-balance">0</strong></div></div>
       <div class="hint"><span class="desktop-hint">WASD 이동 · 마우스 조준/공격</span><span class="mobile-hint">왼쪽 이동 · 오른쪽 조준/공격</span></div>
       <div class="start-actions"><button id="start-button" type="button">게임 시작</button><button id="mission-button" class="secondary" type="button">🏆 미션</button><button id="upgrade-button" class="secondary" type="button">⬆ 강화</button><button id="start-settings-button" class="secondary" type="button">⚙ 설정</button></div>
+      <a class="online-entry" href="online.html">🌐 친구와 온라인 대전 <small>2인 P2P 시험판</small></a>
     </div></section>
     <section id="pause-screen" class="overlay"><div class="panel compact"><div class="eyebrow">PAUSED</div><h2>일시정지</h2><button id="resume-button" type="button">계속하기</button><button id="pause-settings-button" class="secondary" type="button">⚙ 설정</button><button id="restart-button" class="secondary" type="button">경기 다시 시작</button></div></section>
     <section id="settings-screen" class="overlay"><div class="panel compact settings-panel"><div class="eyebrow">SETTINGS</div><h2>게임 설정</h2>
@@ -91,7 +92,7 @@
       </div>
       <div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><div id="result-coins" class="result-coins">🪙 +0 네온 코인</div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
   </main>
-  <script src="game.js?v=18"></script>
+  <script src="game.js?v=19"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
