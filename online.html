@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
   <meta name="theme-color" content="#080b18">
   <title>NEON CLASH · ONLINE</title>
-  <link rel="stylesheet" href="online.css?v=22">
+  <link rel="stylesheet" href="online.css?v=24">
 </head>
 <body>
   <main id="online-shell">
@@ -22,15 +22,15 @@
       <label for="room-code">친구의 방 코드</label><div class="join-row"><input id="room-code" maxlength="6" autocomplete="off" inputmode="text" placeholder="6자리 코드"><button id="join-room" type="button">참가</button></div>
       <div id="room-result" class="room-result">방을 만들거나 코드를 입력하세요.</div>
       <button id="copy-code" class="copy-code" type="button" hidden>방 코드 복사</button>
-      <div class="online-roster" aria-label="참가자 준비 상태"><div><b>나</b><span id="my-role">돌격형</span><em id="my-ready">준비 전</em></div><div><b>친구</b><span id="friend-role">접속 대기</span><em id="friend-ready">준비 전</em></div></div>
+      <div class="online-roster" aria-label="참가자 준비 상태"><div><b id="my-profile">플레이어 · LV.1</b><span id="my-role">돌격형</span><em id="my-ready">준비 전</em></div><div><b id="friend-profile">친구 · LV.1</b><span id="friend-role">접속 대기</span><em id="friend-ready">준비 전</em></div></div>
       <button id="online-start" type="button" disabled>연결을 기다리는 중</button><a href="index.html">← 싱글플레이로 돌아가기</a>
       <small class="beta-note">시험판에서는 방장이 나가면 경기가 종료되며 일부 공용 Wi-Fi에서는 연결되지 않을 수 있습니다.</small>
     </div></section>
-    <section id="online-result" class="online-overlay"><div class="online-panel compact result-panel"><div class="online-eyebrow">MATCH OVER</div><h2 id="online-result-title">경기 종료</h2><p id="online-result-score"></p><div class="online-result-stats"><div><span>처치</span><strong id="online-stat-kills">0</strong></div><div><span>사망</span><strong id="online-stat-deaths">0</strong></div><div><span>발사</span><strong id="online-stat-shots">0</strong></div><div><span>명중률</span><strong id="online-stat-accuracy">0%</strong></div><div><span>피해량</span><strong id="online-stat-damage">0</strong></div><div><span>스킬</span><strong id="online-stat-skill">LV.1</strong></div></div><button id="online-again" type="button">같은 방에서 재대결</button><a href="index.html">싱글플레이로 나가기</a></div></section>
+    <section id="online-result" class="online-overlay"><div class="online-panel compact result-panel"><div class="online-eyebrow">MATCH OVER</div><h2 id="online-result-title">경기 종료</h2><p id="online-result-score"></p><div class="online-result-stats"><div><span>처치</span><strong id="online-stat-kills">0</strong></div><div><span>사망</span><strong id="online-stat-deaths">0</strong></div><div><span>발사</span><strong id="online-stat-shots">0</strong></div><div><span>명중률</span><strong id="online-stat-accuracy">0%</strong></div><div><span>피해량</span><strong id="online-stat-damage">0</strong></div><div><span>스킬</span><strong id="online-stat-skill">LV.1</strong></div><div><span>경험치</span><strong id="online-stat-xp">+0 XP</strong></div></div><button id="online-again" type="button">같은 방에서 재대결</button><a href="index.html">싱글플레이로 나가기</a></div></section>
     <button id="online-ability" type="button" disabled><strong>⚡</strong><span id="online-ability-name">오버드라이브</span><i id="online-ability-cooldown"></i></button>
     <section id="online-controls" aria-label="모바일 조작"><div id="online-move" class="online-stick"><i></i><span>이동</span></div><div id="online-aim" class="online-stick aim"><i></i><span>조준 · 공격</span></div></section>
   </main>
   <script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
-  <script src="online.js?v=22"></script>
+  <script src="online.js?v=24"></script>
 </body>
 </html>
