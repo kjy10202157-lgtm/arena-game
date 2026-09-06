@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="stylesheet" href="style.css?v=27">
+  <link rel="stylesheet" href="style.css?v=28">
 </head>
 <body>
   <main id="game-shell">
@@ -72,6 +72,8 @@
       <div class="setting-row"><div><strong>적 AI 난이도</strong><small>조준 정확도, 판단 속도, 팀 전술과 공격력이 달라집니다.</small></div><div class="choice-group" id="difficulty-options"><button data-value="easy" type="button">쉬움</button><button data-value="normal" type="button">보통</button><button data-value="hard" type="button">어려움</button></div><p class="difficulty-help">쉬움은 천천히 반응하고, 어려움은 예측 사격과 집중 공격을 사용합니다.</p></div>
       <div class="setting-row inline"><div><strong>화면 흔들림</strong><small>피격 효과를 켜거나 끕니다.</small></div><button id="shake-toggle" class="toggle-button" type="button">켜짐</button></div>
       <div class="setting-row inline"><div><strong>사운드 효과</strong><small>공격·스킬·웨이브 효과음을 켜거나 끕니다.</small></div><button id="sound-toggle" class="toggle-button" type="button">켜짐</button></div>
+      <div class="setting-row inline"><div><strong>배경음악</strong><small>전투 중 재생되는 오리지널 네온 음악입니다.</small></div><button id="music-toggle" class="toggle-button" type="button">켜짐</button></div>
+      <div class="setting-row volume-row"><div><strong>음악 음량</strong><small>배경음악 크기를 조절합니다.</small></div><input id="music-volume" type="range" min="0" max="100" step="5" value="45" aria-label="배경음악 음량"><output id="music-volume-value">45%</output></div>
       <div class="setting-row inline"><div><strong>진동</strong><small>지원되는 기기에서 작동합니다.</small></div><button id="vibration-toggle" class="toggle-button" type="button">켜짐</button></div>
       <button id="settings-back-button" type="button">확인</button>
     </div></section>
@@ -127,7 +129,7 @@
       </div>
       <div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><div class="result-rewards"><div id="result-xp" class="result-xp">⭐ +0 XP</div><div id="result-coins" class="result-coins">🪙 +0 네온 코인</div></div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
   </main>
-  <script src="game.js?v=27"></script>
+  <script src="game.js?v=28"></script>
   <script src="feedback.js?v=27"></script>
   <script>
     if ("serviceWorker" in navigator) {
