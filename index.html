@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="stylesheet" href="style.css?v=29">
+  <link rel="stylesheet" href="style.css?v=30">
 </head>
 <body>
   <main id="game-shell">
@@ -23,7 +23,7 @@
       <div class="match"><span id="timer">02:00</span><small id="map-label">네온 공장</small></div>
       <div class="team red"><strong id="red-score">0</strong><span>RED</span></div>
     </header>
-    <section id="status"><div><span id="class-label">돌격형 · HP</span><strong id="hp-text">100</strong></div><div class="track"><i id="health-fill"></i></div><p id="mode-status">3대3 클래식 · 먼저 10점</p><p id="skill-progress">스킬 LV.1 · 다음 강화까지 3킬</p><p id="respawn-text"></p></section>
+    <section id="status"><div><span id="class-label">돌격형 · HP</span><strong id="hp-text">100</strong></div><div class="track"><i id="health-fill"></i></div><p id="mode-status">3대3 클래식 · 먼저 10점</p><p id="skill-progress">스킬 LV.1 · 다음 강화까지 3킬</p><div id="buff-status" aria-live="polite"></div><p id="respawn-text"></p></section>
     <section id="boss-hud" aria-live="polite"><div><strong>👑 네온 가디언</strong><span id="boss-phase">PHASE 1</span></div><div class="boss-track"><i id="boss-health-fill"></i></div></section>
     <section id="training-guide" aria-live="polite"><strong id="training-title">훈련 안내</strong><span id="training-step">이동 조이스틱을 움직여 보세요.</span></section>
     <button id="pause-button" type="button" aria-label="일시정지">Ⅱ</button>
@@ -129,8 +129,8 @@
       </div>
       <div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><div class="result-rewards"><div id="result-xp" class="result-xp">⭐ +0 XP</div><div id="result-coins" class="result-coins">🪙 +0 네온 코인</div></div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
   </main>
-  <script src="game.js?v=29"></script>
-  <script src="feedback.js?v=29"></script>
+  <script src="game.js?v=30"></script>
+  <script src="feedback.js?v=30"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
