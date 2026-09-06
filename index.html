@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="stylesheet" href="style.css?v=28">
+  <link rel="stylesheet" href="style.css?v=29">
 </head>
 <body>
   <main id="game-shell">
@@ -47,7 +47,7 @@
       </div>
       <div id="mode-select" aria-label="게임 모드 선택">
         <button class="mode-card selected" data-mode="classic" type="button"><b>⚔ 3대3</b><small>먼저 10점</small></button>
-        <button class="mode-card" data-mode="wave" type="button"><b>🌊 웨이브</b><small>5단계 생존</small></button>
+        <button class="mode-card" data-mode="wave" type="button"><b>🌊 웨이브</b><small>특수 적 5단계</small></button>
         <button class="mode-card" data-mode="boss" type="button"><b>👑 보스전</b><small>3페이즈 공략</small></button>
         <button class="mode-card training" data-mode="tutorial" type="button"><b>🎓 튜토리얼</b><small>조작 순서 학습</small></button>
         <button class="mode-card training" data-mode="practice" type="button"><b>🎯 연습장</b><small>제한 없이 훈련</small></button>
@@ -129,8 +129,8 @@
       </div>
       <div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><div class="result-rewards"><div id="result-xp" class="result-xp">⭐ +0 XP</div><div id="result-coins" class="result-coins">🪙 +0 네온 코인</div></div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
   </main>
-  <script src="game.js?v=28"></script>
-  <script src="feedback.js?v=27"></script>
+  <script src="game.js?v=29"></script>
+  <script src="feedback.js?v=29"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
