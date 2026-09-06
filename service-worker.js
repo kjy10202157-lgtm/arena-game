@@ -1,9 +1,10 @@
-const CACHE = "neon-clash-v26";
+const CACHE = "neon-clash-v27";
 const ASSETS = [
   "./",
   "./index.html",
   "./style.css",
   "./game.js",
+  "./feedback.js",
   "./online.html",
   "./online.css",
   "./online.js",

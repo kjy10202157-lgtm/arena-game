@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="stylesheet" href="style.css?v=26">
+  <link rel="stylesheet" href="style.css?v=27">
 </head>
 <body>
   <main id="game-shell">
@@ -55,6 +55,7 @@
       <div class="start-records"><div class="best-record">⚡ 최단 승리 <strong id="best-time">기록 없음</strong></div><div class="coin-wallet">🪙 <strong id="coin-balance">0</strong></div></div>
       <div class="hint"><span class="desktop-hint">WASD 이동 · 마우스 조준/공격</span><span class="mobile-hint">왼쪽 이동 · 오른쪽 조준/공격</span></div>
       <div class="start-actions"><button id="start-button" type="button">게임 시작</button><button id="mission-button" class="secondary" type="button">🏆 미션</button><button id="upgrade-button" class="secondary" type="button">⬆ 강화</button><button id="start-settings-button" class="secondary" type="button">⚙ 설정</button></div>
+      <button id="test-center-button" class="test-center-entry" type="button">🧪 게임 테스트 · 버그 신고</button>
       <a class="online-entry" href="online.html?v=24">🌐 친구와 온라인 대전 <small>2인 P2P 시험판</small></a>
     </div></section>
     <section id="profile-screen" class="overlay"><div class="panel profile-panel"><div class="eyebrow">PLAYER PROFILE</div><h2>내 프로필</h2>
@@ -94,6 +95,27 @@
       <div id="achievement-list" class="achievement-list" aria-label="업적 목록"></div>
       <button id="mission-back-button" type="button">완료</button>
     </div></section>
+    <section id="test-center-screen" class="overlay"><div class="panel test-center-panel"><div class="eyebrow">TEST CENTER</div><h2>게임 테스트</h2>
+      <p class="test-intro">항목을 직접 확인하고 체크하세요. 진행 상황과 신고 내용은 이 기기에 저장됩니다.</p>
+      <div id="test-progress" class="test-progress"><div><strong>테스트 진행률</strong><span id="test-progress-text">0 / 6</span></div><i><em id="test-progress-fill"></em></i></div>
+      <div id="test-checklist" class="test-checklist" aria-label="게임 테스트 목록">
+        <label><input type="checkbox" data-test="start"><span><b>게임 시작</b><small>역할·맵·모드를 선택하고 시작되는지 확인</small></span></label>
+        <label><input type="checkbox" data-test="controls"><span><b>이동과 공격</b><small>조이스틱, 공격, 역할 스킬이 작동하는지 확인</small></span></label>
+        <label><input type="checkbox" data-test="modes"><span><b>게임 모드</b><small>3대3·웨이브·보스·튜토리얼·연습장 확인</small></span></label>
+        <label><input type="checkbox" data-test="result"><span><b>경기 종료</b><small>통계, 보상, 역할 다시 선택 버튼 확인</small></span></label>
+        <label><input type="checkbox" data-test="save"><span><b>저장 기능</b><small>프로필·레벨·스킨·미션 진행도가 유지되는지 확인</small></span></label>
+        <label><input type="checkbox" data-test="online"><span><b>온라인 대전</b><small>방 연결, 친구 표시, 재접속 안내 확인</small></span></label>
+      </div>
+      <div class="bug-form"><h3>버그 신고 작성</h3>
+        <div class="bug-grid"><label>발생 위치<select id="bug-location"><option>시작 화면</option><option>일반 게임</option><option>튜토리얼/연습장</option><option>보스/웨이브</option><option>온라인 대전</option><option>프로필/미션</option><option>기타</option></select></label><label>심각도<select id="bug-severity"><option>낮음</option><option selected>보통</option><option>높음</option><option>게임 진행 불가</option></select></label></div>
+        <label>어떤 문제가 발생했나요?<textarea id="bug-description" maxlength="500" placeholder="예: 탱커형으로 게임을 끝낸 뒤 역할 선택 버튼을 누르면 화면이 멈춰요."></textarea></label>
+        <label>재현 방법<textarea id="bug-steps" maxlength="500" placeholder="1. 탱커형 선택  2. 보스전 시작  3. 경기 종료 후 버튼 누르기"></textarea></label>
+        <div class="bug-actions"><button id="bug-save-button" type="button">기기에 저장</button><button id="bug-copy-button" class="secondary" type="button">내용 복사</button><a id="bug-github-button" href="#" target="_blank" rel="noopener">GitHub에 신고</a></div>
+        <p id="bug-message" class="bug-message" aria-live="polite"></p>
+      </div>
+      <div class="saved-reports"><div><h3>저장된 신고</h3><button id="bug-clear-button" type="button">전체 삭제</button></div><div id="bug-report-list"></div></div>
+      <button id="test-center-back-button" type="button">완료</button>
+    </div></section>
     <section id="result-screen" class="overlay"><div class="panel compact result-panel"><div class="eyebrow">MATCH OVER</div><h2 id="result-title">승리!</h2><p id="result-score"></p>
       <div class="result-stats" aria-label="경기 통계">
         <div><span>경기 시간</span><strong id="stat-time">0.0초</strong></div>
@@ -105,7 +127,8 @@
       </div>
       <div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><div class="result-rewards"><div id="result-xp" class="result-xp">⭐ +0 XP</div><div id="result-coins" class="result-coins">🪙 +0 네온 코인</div></div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
   </main>
-  <script src="game.js?v=26"></script>
+  <script src="game.js?v=27"></script>
+  <script src="feedback.js?v=27"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
