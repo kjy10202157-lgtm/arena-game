@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="stylesheet" href="style.css?v=25">
+  <link rel="stylesheet" href="style.css?v=26">
 </head>
 <body>
   <main id="game-shell">
@@ -25,6 +25,7 @@
     </header>
     <section id="status"><div><span id="class-label">돌격형 · HP</span><strong id="hp-text">100</strong></div><div class="track"><i id="health-fill"></i></div><p id="mode-status">3대3 클래식 · 먼저 10점</p><p id="skill-progress">스킬 LV.1 · 다음 강화까지 3킬</p><p id="respawn-text"></p></section>
     <section id="boss-hud" aria-live="polite"><div><strong>👑 네온 가디언</strong><span id="boss-phase">PHASE 1</span></div><div class="boss-track"><i id="boss-health-fill"></i></div></section>
+    <section id="training-guide" aria-live="polite"><strong id="training-title">훈련 안내</strong><span id="training-step">이동 조이스틱을 움직여 보세요.</span></section>
     <button id="pause-button" type="button" aria-label="일시정지">Ⅱ</button>
     <button id="ability-button" type="button" aria-label="필살기 사용"><strong id="ability-key">⚡</strong><span id="ability-name">오버드라이브</span><i id="ability-cooldown"></i></button>
     <section id="mobile-controls" aria-label="모바일 조작">
@@ -48,6 +49,8 @@
         <button class="mode-card selected" data-mode="classic" type="button"><b>⚔ 3대3</b><small>먼저 10점</small></button>
         <button class="mode-card" data-mode="wave" type="button"><b>🌊 웨이브</b><small>5단계 생존</small></button>
         <button class="mode-card" data-mode="boss" type="button"><b>👑 보스전</b><small>3페이즈 공략</small></button>
+        <button class="mode-card training" data-mode="tutorial" type="button"><b>🎓 튜토리얼</b><small>조작 순서 학습</small></button>
+        <button class="mode-card training" data-mode="practice" type="button"><b>🎯 연습장</b><small>제한 없이 훈련</small></button>
       </div>
       <div class="start-records"><div class="best-record">⚡ 최단 승리 <strong id="best-time">기록 없음</strong></div><div class="coin-wallet">🪙 <strong id="coin-balance">0</strong></div></div>
       <div class="hint"><span class="desktop-hint">WASD 이동 · 마우스 조준/공격</span><span class="mobile-hint">왼쪽 이동 · 오른쪽 조준/공격</span></div>
@@ -63,7 +66,7 @@
       <div class="profile-stats"><div><span>경기</span><strong id="profile-matches">0</strong></div><div><span>승리</span><strong id="profile-wins">0</strong></div><div><span>처치</span><strong id="profile-kills">0</strong></div><div><span>보스 격파</span><strong id="profile-boss-wins">0</strong></div></div>
       <p id="profile-message">경기를 플레이하면 경험치를 획득합니다.</p><button id="profile-back-button" type="button">완료</button>
     </div></section>
-    <section id="pause-screen" class="overlay"><div class="panel compact"><div class="eyebrow">PAUSED</div><h2>일시정지</h2><button id="resume-button" type="button">계속하기</button><button id="pause-settings-button" class="secondary" type="button">⚙ 설정</button><button id="restart-button" class="secondary" type="button">경기 다시 시작</button></div></section>
+    <section id="pause-screen" class="overlay"><div class="panel compact"><div class="eyebrow">PAUSED</div><h2>일시정지</h2><button id="resume-button" type="button">계속하기</button><button id="pause-settings-button" class="secondary" type="button">⚙ 설정</button><button id="restart-button" class="secondary" type="button">경기 다시 시작</button><button id="selection-button" class="secondary" type="button">역할 선택으로 나가기</button></div></section>
     <section id="settings-screen" class="overlay"><div class="panel compact settings-panel"><div class="eyebrow">SETTINGS</div><h2>게임 설정</h2>
       <div class="setting-row"><div><strong>적 AI 난이도</strong><small>조준 정확도, 판단 속도, 팀 전술과 공격력이 달라집니다.</small></div><div class="choice-group" id="difficulty-options"><button data-value="easy" type="button">쉬움</button><button data-value="normal" type="button">보통</button><button data-value="hard" type="button">어려움</button></div><p class="difficulty-help">쉬움은 천천히 반응하고, 어려움은 예측 사격과 집중 공격을 사용합니다.</p></div>
       <div class="setting-row inline"><div><strong>화면 흔들림</strong><small>피격 효과를 켜거나 끕니다.</small></div><button id="shake-toggle" class="toggle-button" type="button">켜짐</button></div>
@@ -102,7 +105,7 @@
       </div>
       <div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><div class="result-rewards"><div id="result-xp" class="result-xp">⭐ +0 XP</div><div id="result-coins" class="result-coins">🪙 +0 네온 코인</div></div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
   </main>
-  <script src="game.js?v=25"></script>
+  <script src="game.js?v=26"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
