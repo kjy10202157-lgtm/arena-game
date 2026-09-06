@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="stylesheet" href="style.css?v=19">
+  <link rel="stylesheet" href="style.css?v=25">
 </head>
 <body>
   <main id="game-shell">
@@ -58,6 +58,8 @@
       <div class="profile-hero"><span class="profile-emblem large">N</span><div><strong id="profile-screen-level">LV.1</strong><small id="profile-rank">신입 대원</small></div></div>
       <label for="profile-name-input">닉네임</label><div class="profile-name-row"><input id="profile-name-input" maxlength="10" autocomplete="off" placeholder="플레이어"><button id="profile-save-button" type="button">저장</button></div>
       <div class="profile-progress"><div><span>다음 레벨</span><strong id="profile-screen-xp">0 / 100 XP</strong></div><i><em id="profile-screen-xp-fill"></em></i></div>
+      <div class="customize-section"><div><strong>캐릭터 스킨</strong><small>레벨을 올려 새로운 색상을 해금하세요.</small></div><div id="skin-list" class="customize-grid skins"><button data-skin="neon" type="button"><i style="--skin:#42d8ff"></i><span>네온 블루</span></button><button data-skin="ember" type="button"><i style="--skin:#ff794d"></i><span>앰버</span></button><button data-skin="mint" type="button"><i style="--skin:#4ff0a4"></i><span>민트</span></button><button data-skin="plasma" type="button"><i style="--skin:#b26cff"></i><span>플라즈마</span></button><button data-skin="gold" type="button"><i style="--skin:#ffd45c"></i><span>골드</span></button></div></div>
+      <div class="customize-section"><div><strong>이름표 배지</strong><small>캐릭터 이름 앞에 표시됩니다.</small></div><div id="badge-list" class="customize-grid badges"><button data-badge="star" type="button">★ 별</button><button data-badge="bolt" type="button">⚡ 번개</button><button data-badge="shield" type="button">◆ 방패</button><button data-badge="crown" type="button">♛ 왕관</button></div></div>
       <div class="profile-stats"><div><span>경기</span><strong id="profile-matches">0</strong></div><div><span>승리</span><strong id="profile-wins">0</strong></div><div><span>처치</span><strong id="profile-kills">0</strong></div><div><span>보스 격파</span><strong id="profile-boss-wins">0</strong></div></div>
       <p id="profile-message">경기를 플레이하면 경험치를 획득합니다.</p><button id="profile-back-button" type="button">완료</button>
     </div></section>
@@ -100,7 +102,7 @@
       </div>
       <div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><div class="result-rewards"><div id="result-xp" class="result-xp">⭐ +0 XP</div><div id="result-coins" class="result-coins">🪙 +0 네온 코인</div></div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
   </main>
-  <script src="game.js?v=24"></script>
+  <script src="game.js?v=25"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
