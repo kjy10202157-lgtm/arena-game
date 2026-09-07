@@ -19,7 +19,7 @@ button,input{font:inherit}
 .online-panel p{margin:8px 0 16px;color:#aeb8d8;font-size:.82rem;line-height:1.5}
 .online-panel button{min-height:46px;border:0;border-radius:13px;color:#04101b;background:linear-gradient(135deg,#61edff,#3aa8ff);font-weight:900}
 .online-panel button:disabled{color:#727e9b;background:#ffffff12}
-.online-roles{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}
+.online-roles{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}
 .online-panel .online-roles button{min-height:42px;color:#bfc9e8;background:#ffffff0b}
 .online-panel .online-roles button.selected{border:1px solid #42d8ff;color:#fff;background:#42d8ff22}
 #create-room,#online-start,#online-again{width:100%}
@@ -63,3 +63,4 @@ button,input{font:inherit}
 }
 @media(max-height:520px) and (orientation:landscape){.online-roster{margin:4px 0}.online-roster>div{padding:4px 7px}.online-roster em{display:none}.online-panel .copy-code{min-height:30px;margin:-3px 0 4px}}
 @media(max-height:520px) and (orientation:landscape){.online-maps{margin:0 0 4px}.online-maps button small,.upgrade-info{display:none}#online-player-status{top:58px;padding:5px 8px}#online-ability{right:132px;bottom:18px;width:68px;height:68px}.online-result-stats{grid-template-columns:repeat(6,1fr);margin:5px 0}.online-result-stats div{padding:5px 2px}}
+@media(max-width:520px){.online-roles{grid-template-columns:repeat(2,1fr)}}

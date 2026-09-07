@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="stylesheet" href="style.css?v=32">
+  <link rel="stylesheet" href="style.css?v=33">
 </head>
 <body>
   <main id="game-shell">
@@ -40,6 +40,7 @@
         <button class="class-card selected" data-class="assault" type="button"><b>⚡ 돌격형</b><small>빠른 이동과 연사<br>필살기: 오버드라이브</small></button>
         <button class="class-card" data-class="tank" type="button"><b>🛡️ 탱커형</b><small>높은 체력과 방어<br>필살기: 보호막</small></button>
         <button class="class-card" data-class="sniper" type="button"><b>🎯 저격형</b><small>느리지만 강한 공격<br>필살기: 관통탄</small></button>
+        <button class="class-card support" data-class="support" type="button"><b>✚ 지원형</b><small>아군 회복과 균형 잡힌 전투<br>필살기: 회복 펄스</small></button>
       </div>
       <div id="map-select" aria-label="맵 선택">
         <button class="map-card selected" data-map="factory" type="button"><b>🏭 네온 공장</b><small>엄폐물이 많은 균형형</small></button>
@@ -57,7 +58,7 @@
       <div class="hint"><span class="desktop-hint">WASD 이동 · 마우스 조준/공격</span><span class="mobile-hint">왼쪽 이동 · 오른쪽 조준/공격</span></div>
       <div class="start-actions"><button id="start-button" type="button">게임 시작</button><button id="mission-button" class="secondary" type="button">🏆 미션</button><button id="upgrade-button" class="secondary" type="button">⬆ 강화</button><button id="start-settings-button" class="secondary" type="button">⚙ 설정</button></div>
       <button id="test-center-button" class="test-center-entry" type="button">🧪 게임 테스트 · 버그 신고</button>
-      <a class="online-entry" href="online.html?v=24">🌐 친구와 온라인 대전 <small>2인 P2P 시험판</small></a>
+      <a class="online-entry" href="online.html?v=26">🌐 친구와 온라인 대전 <small>2인 P2P 시험판</small></a>
     </div></section>
     <section id="profile-screen" class="overlay"><div class="panel profile-panel"><div class="eyebrow">PLAYER PROFILE</div><h2>내 프로필</h2>
       <div class="profile-hero"><span class="profile-emblem large">N</span><div><strong id="profile-screen-level">LV.1</strong><small id="profile-rank">신입 대원</small></div></div>
@@ -88,7 +89,7 @@
     <section id="upgrade-screen" class="overlay"><div class="panel upgrade-panel"><div class="eyebrow">NEON LAB</div><h2>역할 강화소</h2>
       <div class="shop-wallet">보유 코인 <strong>🪙 <span id="shop-coin-balance">0</span></strong></div>
       <div class="shop-classes" aria-label="강화할 역할 선택">
-        <button class="shop-class-card selected" data-class="assault" type="button">⚡ 돌격형</button><button class="shop-class-card" data-class="tank" type="button">🛡️ 탱커형</button><button class="shop-class-card" data-class="sniper" type="button">🎯 저격형</button>
+        <button class="shop-class-card selected" data-class="assault" type="button">⚡ 돌격형</button><button class="shop-class-card" data-class="tank" type="button">🛡️ 탱커형</button><button class="shop-class-card" data-class="sniper" type="button">🎯 저격형</button><button class="shop-class-card" data-class="support" type="button">✚ 지원형</button>
       </div>
       <h3 id="shop-class-name">돌격형 강화</h3>
       <div class="upgrade-list">
@@ -137,8 +138,8 @@
       </div>
       <div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><div class="result-rewards"><div id="result-xp" class="result-xp">⭐ +0 XP</div><div id="result-coins" class="result-coins">🪙 +0 네온 코인</div></div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
   </main>
-  <script src="game.js?v=32"></script>
-  <script src="feedback.js?v=32"></script>
+  <script src="game.js?v=33"></script>
+  <script src="feedback.js?v=33"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
