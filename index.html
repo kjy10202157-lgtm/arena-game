@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="stylesheet" href="style.css?v=33">
+  <link rel="stylesheet" href="style.css?v=34">
 </head>
 <body>
   <main id="game-shell">
@@ -56,16 +56,16 @@
       </div>
       <div class="start-records"><div class="best-record">⚡ 최단 승리 <strong id="best-time">기록 없음</strong></div><div class="coin-wallet">🪙 <strong id="coin-balance">0</strong></div></div>
       <div class="hint"><span class="desktop-hint">WASD 이동 · 마우스 조준/공격</span><span class="mobile-hint">왼쪽 이동 · 오른쪽 조준/공격</span></div>
-      <div class="start-actions"><button id="start-button" type="button">게임 시작</button><button id="mission-button" class="secondary" type="button">🏆 미션</button><button id="upgrade-button" class="secondary" type="button">⬆ 강화</button><button id="start-settings-button" class="secondary" type="button">⚙ 설정</button></div>
+      <div class="start-actions"><button id="start-button" type="button">게임 시작</button><button id="season-button" class="secondary season-entry" type="button">🌌 무료 시즌</button><button id="mission-button" class="secondary" type="button">🏆 미션</button><button id="upgrade-button" class="secondary" type="button">⬆ 강화</button><button id="start-settings-button" class="secondary" type="button">⚙ 설정</button></div>
       <button id="test-center-button" class="test-center-entry" type="button">🧪 게임 테스트 · 버그 신고</button>
-      <a class="online-entry" href="online.html?v=26">🌐 친구와 온라인 대전 <small>2인 P2P 시험판</small></a>
+      <a class="online-entry" href="online.html?v=27">🌐 친구와 온라인 대전 <small>2인 P2P 시험판</small></a>
     </div></section>
     <section id="profile-screen" class="overlay"><div class="panel profile-panel"><div class="eyebrow">PLAYER PROFILE</div><h2>내 프로필</h2>
       <div class="profile-hero"><span class="profile-emblem large">N</span><div><strong id="profile-screen-level">LV.1</strong><small id="profile-rank">신입 대원</small></div></div>
       <label for="profile-name-input">닉네임</label><div class="profile-name-row"><input id="profile-name-input" maxlength="10" autocomplete="off" placeholder="플레이어"><button id="profile-save-button" type="button">저장</button></div>
       <div class="profile-progress"><div><span>다음 레벨</span><strong id="profile-screen-xp">0 / 100 XP</strong></div><i><em id="profile-screen-xp-fill"></em></i></div>
-      <div class="customize-section"><div><strong>캐릭터 스킨</strong><small>레벨을 올려 새로운 색상을 해금하세요.</small></div><div id="skin-list" class="customize-grid skins"><button data-skin="neon" type="button"><i style="--skin:#42d8ff"></i><span>네온 블루</span></button><button data-skin="ember" type="button"><i style="--skin:#ff794d"></i><span>앰버</span></button><button data-skin="mint" type="button"><i style="--skin:#4ff0a4"></i><span>민트</span></button><button data-skin="plasma" type="button"><i style="--skin:#b26cff"></i><span>플라즈마</span></button><button data-skin="gold" type="button"><i style="--skin:#ffd45c"></i><span>골드</span></button></div></div>
-      <div class="customize-section"><div><strong>이름표 배지</strong><small>캐릭터 이름 앞에 표시됩니다.</small></div><div id="badge-list" class="customize-grid badges"><button data-badge="star" type="button">★ 별</button><button data-badge="bolt" type="button">⚡ 번개</button><button data-badge="shield" type="button">◆ 방패</button><button data-badge="crown" type="button">♛ 왕관</button></div></div>
+      <div class="customize-section"><div><strong>캐릭터 스킨</strong><small>레벨 또는 무료 시즌 보상으로 해금하세요.</small></div><div id="skin-list" class="customize-grid skins"><button data-skin="neon" type="button"><i style="--skin:#42d8ff"></i><span>네온 블루</span></button><button data-skin="ember" type="button"><i style="--skin:#ff794d"></i><span>앰버</span></button><button data-skin="mint" type="button"><i style="--skin:#4ff0a4"></i><span>민트</span></button><button data-skin="plasma" type="button"><i style="--skin:#b26cff"></i><span>플라즈마</span></button><button data-skin="gold" type="button"><i style="--skin:#ffd45c"></i><span>골드</span></button><button data-skin="aurora" type="button"><i style="--skin:#54f0dd"></i><span>오로라</span></button><button data-skin="void" type="button"><i style="--skin:#ff62d4"></i><span>보이드</span></button></div></div>
+      <div class="customize-section"><div><strong>이름표 배지</strong><small>캐릭터 이름 앞에 표시됩니다.</small></div><div id="badge-list" class="customize-grid badges"><button data-badge="star" type="button">★ 별</button><button data-badge="bolt" type="button">⚡ 번개</button><button data-badge="shield" type="button">◆ 방패</button><button data-badge="crown" type="button">♛ 왕관</button><button data-badge="pioneer" type="button">✦ 개척자</button></div></div>
       <div class="profile-stats"><div><span>경기</span><strong id="profile-matches">0</strong></div><div><span>승리</span><strong id="profile-wins">0</strong></div><div><span>처치</span><strong id="profile-kills">0</strong></div><div><span>보스 격파</span><strong id="profile-boss-wins">0</strong></div></div>
       <p id="profile-message">경기를 플레이하면 경험치를 획득합니다.</p><button id="profile-back-button" type="button">완료</button>
     </div></section>
@@ -106,6 +106,13 @@
       <div id="achievement-list" class="achievement-list" aria-label="업적 목록"></div>
       <button id="mission-back-button" type="button">완료</button>
     </div></section>
+    <section id="season-screen" class="overlay"><div class="panel season-panel"><div class="eyebrow">SEASON 1 · FREE PASS</div><h2>네온 개척자</h2>
+      <div class="season-summary"><div><span class="free-pass-label">100% 무료</span><strong id="season-tier">0 / 10 단계</strong><small id="season-xp">0 시즌 XP</small></div><div class="season-progress"><i><em id="season-progress-fill"></em></i><span id="season-next">첫 보상까지 60 XP</span></div></div>
+      <p class="season-note">일반·웨이브·보스 경기를 완료하면 시즌 XP를 얻습니다. 결제나 확률형 보상 없이 모든 단계가 무료입니다.</p>
+      <div id="season-track" class="season-track" aria-label="무료 시즌 보상 목록"></div>
+      <p id="season-message" class="season-message" aria-live="polite">달성한 단계의 보상을 직접 수령하세요.</p>
+      <button id="season-back-button" type="button">완료</button>
+    </div></section>
     <section id="test-center-screen" class="overlay"><div class="panel test-center-panel"><div class="eyebrow">TEST CENTER</div><h2>게임 테스트</h2>
       <p class="test-intro">항목을 직접 확인하고 체크하세요. 진행 상황과 신고 내용은 이 기기에 저장됩니다.</p>
       <div id="test-progress" class="test-progress"><div><strong>테스트 진행률</strong><span id="test-progress-text">0 / 6</span></div><i><em id="test-progress-fill"></em></i></div>
@@ -136,10 +143,10 @@
         <div><span>명중률</span><strong id="stat-accuracy">0%</strong></div>
         <div><span>가한 피해</span><strong id="stat-damage">0</strong></div>
       </div>
-      <div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><div class="result-rewards"><div id="result-xp" class="result-xp">⭐ +0 XP</div><div id="result-coins" class="result-coins">🪙 +0 네온 코인</div></div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
+      <div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><div class="result-rewards"><div id="result-xp" class="result-xp">⭐ +0 XP</div><div id="result-coins" class="result-coins">🪙 +0 네온 코인</div><div id="result-season-xp" class="result-season-xp">🌌 +0 시즌 XP</div></div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
   </main>
-  <script src="game.js?v=33"></script>
-  <script src="feedback.js?v=33"></script>
+  <script src="game.js?v=34"></script>
+  <script src="feedback.js?v=34"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
