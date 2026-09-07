@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="stylesheet" href="style.css?v=35">
+  <link rel="stylesheet" href="style.css?v=36">
 </head>
 <body>
   <main id="game-shell">
@@ -34,6 +34,8 @@
       <button data-ping="attack" type="button">⚔️<span>공격</span></button><button data-ping="regroup" type="button">◎<span>집결</span></button><button data-ping="heal" type="button">✚<span>회복 요청</span></button><button data-ping="retreat" type="button">◀<span>후퇴</span></button>
     </section>
     <div id="ping-toast" role="status" aria-live="polite"></div>
+    <aside id="kill-feed" aria-label="킬피드" aria-live="polite"></aside>
+    <div id="combat-alert" role="status" aria-live="assertive"></div>
     <section id="mobile-controls" aria-label="모바일 조작">
       <div id="move-stick" class="stick"><div class="knob"></div><span>이동</span></div>
       <div id="aim-stick" class="stick aim"><div class="knob"></div><span>조준 · 공격</span></div>
@@ -63,7 +65,7 @@
       <div class="hint"><span class="desktop-hint">WASD 이동 · 마우스 조준/공격</span><span class="mobile-hint">왼쪽 이동 · 오른쪽 조준/공격</span></div>
       <div class="start-actions"><button id="start-button" type="button">게임 시작</button><button id="season-button" class="secondary season-entry" type="button">🌌 무료 시즌</button><button id="mission-button" class="secondary" type="button">🏆 미션</button><button id="upgrade-button" class="secondary" type="button">⬆ 강화</button><button id="start-settings-button" class="secondary" type="button">⚙ 설정</button></div>
       <button id="test-center-button" class="test-center-entry" type="button">🧪 게임 테스트 · 버그 신고</button>
-      <a class="online-entry" href="online.html?v=28">🌐 친구와 온라인 대전 <small>2인 P2P 시험판</small></a>
+      <a class="online-entry" href="online.html?v=29">🌐 친구와 온라인 대전 <small>2인 P2P 시험판</small></a>
     </div></section>
     <section id="profile-screen" class="overlay"><div class="panel profile-panel"><div class="eyebrow">PLAYER PROFILE</div><h2>내 프로필</h2>
       <div class="profile-hero"><span class="profile-emblem large">N</span><div><strong id="profile-screen-level">LV.1</strong><small id="profile-rank">신입 대원</small></div></div>
@@ -150,8 +152,8 @@
       </div>
       <div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><div class="result-rewards"><div id="result-xp" class="result-xp">⭐ +0 XP</div><div id="result-coins" class="result-coins">🪙 +0 네온 코인</div><div id="result-season-xp" class="result-season-xp">🌌 +0 시즌 XP</div></div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
   </main>
-  <script src="game.js?v=35"></script>
-  <script src="feedback.js?v=35"></script>
+  <script src="game.js?v=36"></script>
+  <script src="feedback.js?v=36"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
