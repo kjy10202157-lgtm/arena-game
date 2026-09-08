@@ -76,3 +76,34 @@
 
 .mode-card.domination{border-color:#ffd45c55;background:linear-gradient(145deg,#ffd45c1c,#0a1024)}.mode-card.domination.selected{border-color:#ffd45c;box-shadow:0 0 24px #ffd45c44}.mode-card.domination b{color:#ffe27a}
 
+/* v47: phone/tablet viewport fitting */
+html,body,#game-shell{width:100vw;width:100dvw;height:100vh;height:100dvh;min-width:0;min-height:0}
+#game{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.overlay{width:100dvw;height:100dvh;max-width:100%;max-height:100%;padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));overflow:auto}
+.panel{max-width:calc(100dvw - env(safe-area-inset-left) - env(safe-area-inset-right) - 16px)}
+@media (max-height:520px) and (orientation:landscape){
+  #start-screen{display:none;overflow:hidden;padding:0}
+  #start-screen.visible{display:block}
+  #start-screen>.panel{position:absolute;top:50%;left:50%;width:min(96vw,820px);transform:translate(-50%,-50%) scale(.82);transform-origin:center}
+  #start-screen .online-entry,#start-screen .test-center-entry{min-height:34px;margin-top:4px}
+  #mobile-controls{--phone-control-scale:.78}
+  .stick{width:calc(var(--stick-size)*var(--phone-control-scale));height:calc(var(--stick-size)*var(--phone-control-scale));bottom:max(12px,env(safe-area-inset-bottom))}
+  #hud{top:max(6px,env(safe-area-inset-top));width:min(62vw,430px);border-radius:13px}
+  .team{padding:5px 8px}.team strong{font-size:1.2rem}.match{padding:4px 7px}.match small{font-size:.55rem}
+  #status{top:max(58px,calc(env(safe-area-inset-top) + 50px));left:max(8px,env(safe-area-inset-left));width:min(29vw,185px)}
+  #ability-button{right:max(132px,calc(env(safe-area-inset-right) + 112px));bottom:max(20px,env(safe-area-inset-bottom));width:62px;height:62px}
+  #auxiliary-button{right:max(68px,calc(env(safe-area-inset-right) + 50px));bottom:max(22px,env(safe-area-inset-bottom));width:56px;height:56px}
+  #ping-button{right:max(196px,calc(env(safe-area-inset-right) + 176px));bottom:max(22px,env(safe-area-inset-bottom));width:54px;height:54px}
+}
+@media (max-height:430px) and (orientation:landscape){
+  #start-screen>.panel{width:min(112vw,900px);transform:translate(-50%,-50%) scale(.69)}
+  #mobile-controls{--phone-control-scale:.68}
+  #hud{width:min(58vw,390px)}
+  #status{top:max(52px,calc(env(safe-area-inset-top) + 46px));font-size:.86em}
+}
+@media (max-height:360px) and (orientation:landscape){
+  #start-screen>.panel{width:min(124vw,940px);transform:translate(-50%,-50%) scale(.59)}
+  #mobile-controls{--phone-control-scale:.6}
+  #ability-button{width:56px;height:56px}#auxiliary-button{width:50px;height:50px}#ping-button{width:48px;height:48px}
+}
+
