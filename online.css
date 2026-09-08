@@ -22,7 +22,9 @@ button,input{font:inherit}
 .online-roles{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}
 .online-panel .online-roles button{min-height:42px;color:#bfc9e8;background:#ffffff0b}
 .online-panel .online-roles button.selected{border:1px solid #42d8ff;color:#fff;background:#42d8ff22}
-#create-room,#online-start,#online-again{width:100%}
+#create-room,#quick-match,#cancel-match,#online-start,#online-again{width:100%}
+#quick-match{margin-bottom:7px;background:linear-gradient(135deg,#ffd45c,#ff8a4c);box-shadow:0 0 24px #ffb34730}
+.online-panel .cancel-match{margin-bottom:7px;color:#ff9db4;background:#ff4d7616;border:1px solid #ff4d7655}
 .online-divider{display:flex;align-items:center;gap:9px;margin:12px 0;color:#7582a6;font-size:.7rem}
 .online-divider:before,.online-divider:after{content:"";height:1px;flex:1;background:#ffffff15}
 .online-panel label{display:block;margin-bottom:5px;text-align:left;color:#9ca9c9;font-size:.7rem}
