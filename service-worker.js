@@ -1,4 +1,4 @@
-const CACHE = "neon-clash-v48";
+const CACHE = "neon-clash-v49";
 const ASSETS = [
   "./",
   "./index.html",
@@ -7,7 +7,8 @@ const ASSETS = [
   "./feedback.js",
   "./online.html",
   "./online.css",
-  "./online.js",
+  "./online-config.js",
+  "./online6.js",
   "./manifest.webmanifest",
   "./privacy.html",
   "./icon-192.png",
