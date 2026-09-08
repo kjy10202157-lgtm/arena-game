@@ -6,7 +6,7 @@
   const write=(key,value)=>{try{localStorage.setItem(key,JSON.stringify(value));return true}catch{return false}};
   const reports=()=>read(REPORT_KEY,[]);
   function updateProgress(){const saved=read(CHECK_KEY,{});checks.forEach(c=>c.checked=!!saved[c.dataset.test]);const done=checks.filter(c=>c.checked).length;$("#test-progress-text").textContent=`${done} / ${checks.length}`;$("#test-progress-fill").style.width=`${done/checks.length*100}%`}
-  function reportText(){const description=$("#bug-description").value.trim(),steps=$("#bug-steps").value.trim();return `[NEON CLASH 버그 신고]\n버전: v37\n발생 위치: ${$("#bug-location").value}\n심각도: ${$("#bug-severity").value}\n기기: ${navigator.userAgent}\n\n문제 설명:\n${description||"입력 안 함"}\n\n재현 방법:\n${steps||"입력 안 함"}`}
+  function reportText(){const description=$("#bug-description").value.trim(),steps=$("#bug-steps").value.trim();return `[NEON CLASH 버그 신고]\n버전: v38\n발생 위치: ${$("#bug-location").value}\n심각도: ${$("#bug-severity").value}\n기기: ${navigator.userAgent}\n\n문제 설명:\n${description||"입력 안 함"}\n\n재현 방법:\n${steps||"입력 안 함"}`}
   function renderReports(){const list=$("#bug-report-list"),items=reports();list.innerHTML=items.length?items.map(r=>`<article class="report-card"><div><span>${escapeHtml(r.location)} · ${escapeHtml(r.severity)}</span><time>${escapeHtml(r.date)}</time></div><strong>${escapeHtml(r.description)}</strong><p>${escapeHtml(r.steps||"재현 방법 없음")}</p></article>`).join(""):`<div class="empty-reports">아직 저장된 신고가 없습니다.</div>`}
   function escapeHtml(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
   function message(text,error=false){const el=$("#bug-message");el.textContent=text;el.style.color=error?"#ff91aa":"#62edc0"}
