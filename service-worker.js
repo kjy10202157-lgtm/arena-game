@@ -1,4 +1,4 @@
-const CACHE = "neon-clash-v40";
+const CACHE = "neon-clash-v41";
 const ASSETS = [
   "./",
   "./index.html",
@@ -39,5 +39,6 @@ self.addEventListener("fetch", event => {
     )
   );
 });
+
 
 
