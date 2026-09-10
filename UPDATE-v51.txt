@@ -1,0 +1,34 @@
+NEON CLASH v51: 적은 수의 무작위 상자 + 아이템
+
+한 경기당 상자 4개. 좌우에 2개씩 공평하게 배치합니다.
+벽과 시작 위치를 피하며, 직전 배치와 같은 좌표를 피합니다.
+한 번 배치된 상자는 경기 중 이동하거나 재생성되지 않습니다.
+상자 하나를 파괴하면 회복/속사/가속 중 아이템 1개가 나옵니다.
+회복: HP 40 (최대 체력 이내). 속사/가속: 8초.
+온라인 위치와 아이템 획득은 서버가 결정합니다.
+싱글플레이의 기존 필드 아이템과 이동 게이트는 유지합니다.
+
+자동 검사: 3개 맵 × 싱글/온라인 크기 × 300회 배치,
+상자 파괴/충돌/아이템 중복 획득 방지/버프 만료/서버 상태 전달 통과.
+실제 태블릿 화면과 6명 동시 플레이 검증은 배포 후 필요합니다.
+
+Codespaces 저장소 루트에 ZIP을 올리세요.
+로컬에서 별도로 수정한 파일이 있으면 먼저 복사해 두세요.
+아래 명령을 한 줄씩 실행하고 오류가 나오면 멈추세요.
+ZIP 이름에 -1 등이 붙었다면 실제 이름을 사용하세요.
+
+cd /workspaces/arena-game
+unzip -o neon-clash-v51-update.zip
+node cloudflare-server/test-obstacles.mjs
+node cloudflare-server/test-loot.mjs
+cd cloudflare-server
+npm install
+npm run deploy
+cd ..
+git add arena-obstacles.js game.js online6.js index.html online.html service-worker.js .gitignore cloudflare-server UPDATE-v51.txt
+git commit -m "Randomize four crates and add item drops"
+git push origin main
+
+online-config.js는 패키지에 포함하지 않아 현재 서버 주소를 유지합니다.
+GitHub 업로드와 Cloudflare 서버 재배포가 모두 필요합니다.
+서버 /health에서 version:51을 확인하고 게임 페이지를 새로고침하세요.

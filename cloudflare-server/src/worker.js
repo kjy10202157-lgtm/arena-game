@@ -11,7 +11,7 @@ const json=(socket,value)=>{try{socket.send(JSON.stringify(value))}catch{}};
 export default {
   fetch(request,env){
     const url=new URL(request.url);
-    if(url.pathname==="/health")return Response.json({ok:true,service:"NEON CLASH 3v3",version:50});
+    if(url.pathname==="/health")return Response.json({ok:true,service:"NEON CLASH 3v3",version:51});
     if(url.pathname!=="/play")return new Response("NEON CLASH 3v3 server",{status:200});
     if(request.headers.get("Upgrade")!=="websocket")return new Response("WebSocket required",{status:426});
     const id=env.ARENA.idFromName("global-matchmaker-v49");
@@ -21,7 +21,7 @@ export default {
 
 export class ArenaCoordinator {
   constructor(state){
-    this.state=state;this.clients=new Map();this.waiting=[];this.matches=new Map();this.sequence=0;this.timer=null;
+    this.previousCrates={};this.state=state;this.clients=new Map();this.waiting=[];this.matches=new Map();this.sequence=0;this.timer=null;
   }
   async fetch(request){
     const pair=new WebSocketPair(),client=pair[0],server=pair[1];server.accept();
@@ -31,7 +31,7 @@ export class ArenaCoordinator {
     server.addEventListener("message",e=>this.message(session,e.data));
     server.addEventListener("close",()=>this.disconnect(session));
     server.addEventListener("error",()=>this.disconnect(session));
-    json(server,{type:"connected",id,version:50});
+    json(server,{type:"connected",id,version:51});
     this.ensureTimer();
     return new Response(null,{status:101,webSocket:client});
   }
@@ -50,11 +50,11 @@ export class ArenaCoordinator {
   leaveQueue(session){this.waiting=this.waiting.filter(id=>id!==session.id);json(session.socket,{type:"queue",count:this.waiting.length,needed:MAX_PLAYERS});this.broadcastQueue()}
   broadcastQueue(){this.waiting=this.waiting.filter(id=>this.clients.has(id)&&!this.clients.get(id).matchId);const msg={type:"queue",count:this.waiting.length,needed:MAX_PLAYERS};for(const id of this.waiting){const s=this.clients.get(id);if(s)json(s.socket,msg)}}
   formMatches(){while(this.waiting.length>=MAX_PLAYERS){const ids=this.waiting.splice(0,MAX_PLAYERS),match=this.makeMatch(ids);this.matches.set(match.id,match);for(const p of match.players.values()){const s=this.clients.get(p.id);if(s){s.matchId=match.id;json(s.socket,{type:"match",matchId:match.id,playerId:p.id,team:p.team,map:match.map,players:[...match.players.values()].map(this.publicPlayer)})}}setTimeout(()=>{if(this.matches.has(match.id)){match.started=true;match.startedAt=Date.now();this.broadcastMatch(match,{type:"start",countdown:0})}},3000)}this.broadcastQueue()}
-  makeMatch(ids){const id=`m${Date.now().toString(36)}${(++this.sequence).toString(36)}`,players=new Map();ids.forEach((sid,i)=>{const s=this.clients.get(sid),team=i<3?"blue":"red",slot=i%3,role=s?.role||"assault",spec=ROLES[role];players.set(sid,{id:sid,name:s?.name||"플레이어",role,skin:s?.skin||"neon",badge:s?.badge||"star",team,slot,x:team==="blue"?145:WIDTH-145,y:190+slot*170,ax:team==="blue"?1:-1,ay:0,hp:spec.hp,maxHp:spec.hp,alive:true,respawn:0,cool:0,abilityCd:0,kills:0,deaths:0,input:this.cleanInput()})});return{id,map:MAPS[Math.floor(Math.random()*MAPS.length)],players,crates:OBJECTS.crates(),bullets:[],blue:0,red:0,time:120,started:false,ended:false,lastTick:Date.now(),shotSeq:0}}
-  publicPlayer(p){return{id:p.id,name:p.name,role:p.role,skin:p.skin,badge:p.badge,team:p.team,slot:p.slot,x:Math.round(p.x*10)/10,y:Math.round(p.y*10)/10,ax:p.ax,ay:p.ay,hp:Math.max(0,Math.round(p.hp)),maxHp:p.maxHp,alive:p.alive,respawn:p.respawn,kills:p.kills,deaths:p.deaths}}
+  makeMatch(ids){const id=`m${Date.now().toString(36)}${(++this.sequence).toString(36)}`,players=new Map();ids.forEach((sid,i)=>{const s=this.clients.get(sid),team=i<3?"blue":"red",slot=i%3,role=s?.role||"assault",spec=ROLES[role];players.set(sid,{id:sid,name:s?.name||"플레이어",role,skin:s?.skin||"neon",badge:s?.badge||"star",team,slot,x:team==="blue"?145:WIDTH-145,y:190+slot*170,ax:team==="blue"?1:-1,ay:0,hp:spec.hp,maxHp:spec.hp,alive:true,respawn:0,cool:0,abilityCd:0,kills:0,deaths:0,speedBuff:0,haste:0,input:this.cleanInput()})});const map=MAPS[Math.floor(Math.random()*MAPS.length)],crates=OBJECTS.crates(WIDTH,HEIGHT,MAP_DATA[map].obstacles,this.previousCrates[map]||[]);this.previousCrates[map]=crates.map(c=>({...c}));return{id,map,players,crates,pickups:[],bullets:[],blue:0,red:0,time:120,started:false,ended:false,lastTick:Date.now(),shotSeq:0}}
+  publicPlayer(p){return{id:p.id,name:p.name,role:p.role,skin:p.skin,badge:p.badge,team:p.team,slot:p.slot,x:Math.round(p.x*10)/10,y:Math.round(p.y*10)/10,ax:p.ax,ay:p.ay,hp:Math.max(0,Math.round(p.hp)),maxHp:p.maxHp,alive:p.alive,respawn:p.respawn,kills:p.kills,deaths:p.deaths,speedBuff:p.speedBuff||0,haste:p.haste||0}}
   ensureTimer(){if(!this.timer)this.timer=setInterval(()=>this.tick(),TICK_MS)}
-  tick(){const now=Date.now();for(const match of this.matches.values()){if(!match.started||match.ended)continue;const dt=Math.min(.1,(now-match.lastTick)/1000);match.lastTick=now;match.time=Math.max(0,match.time-dt);for(const p of match.players.values())this.updatePlayer(match,p,dt);this.updateBullets(match,dt);if(match.time<=0||match.blue>=10||match.red>=10)this.endMatch(match);else this.broadcastMatch(match,{type:"snapshot",world:this.snapshot(match)})}if(!this.clients.size&&this.timer){clearInterval(this.timer);this.timer=null}}
-  updatePlayer(match,p,dt){if(!p.alive){p.respawn-=dt;if(p.respawn<=0){p.alive=true;p.hp=p.maxHp;p.x=p.team==="blue"?145:WIDTH-145;p.y=190+p.slot*170}return}const spec=ROLES[p.role],i=p.input,d=Math.hypot(i.x,i.y)||1;const solids=[...MAP_DATA[match.map].obstacles,...match.crates],nx=clamp(p.x+i.x/d*spec.speed*dt,28,WIDTH-28),ny=clamp(p.y+i.y/d*spec.speed*dt,28,HEIGHT-28);if(!OBJECTS.blocked(nx,p.y,28,solids))p.x=nx;if(!OBJECTS.blocked(p.x,ny,28,solids))p.y=ny;if(Math.hypot(i.ax,i.ay)>.15){const a=Math.hypot(i.ax,i.ay);p.ax=i.ax/a;p.ay=i.ay/a}p.cool=Math.max(0,p.cool-dt);p.abilityCd=Math.max(0,p.abilityCd-dt);if(i.fire&&p.cool<=0){p.cool=spec.rate;match.bullets.push({id:++match.shotSeq,owner:p.id,team:p.team,x:p.x,y:p.y,vx:p.ax*660,vy:p.ay*660,damage:spec.damage,life:1.3})}if(i.ability&&p.abilityCd<=0){p.abilityCd=10;if(p.role==="support"){for(const ally of match.players.values())if(ally.team===p.team&&ally.alive&&Math.hypot(ally.x-p.x,ally.y-p.y)<190)ally.hp=Math.min(ally.maxHp,ally.hp+35)}else if(p.role==="tank")p.hp=Math.min(p.maxHp,p.hp+45);else p.cool=0}p.input.ability=false;p.input.auxiliary=false}
+  tick(){const now=Date.now();for(const match of this.matches.values()){if(!match.started||match.ended)continue;const dt=Math.min(.1,(now-match.lastTick)/1000);match.lastTick=now;match.time=Math.max(0,match.time-dt);for(const p of match.players.values())this.updatePlayer(match,p,dt);this.updateBullets(match,dt);this.collectPickups(match);if(match.time<=0||match.blue>=10||match.red>=10)this.endMatch(match);else this.broadcastMatch(match,{type:"snapshot",world:this.snapshot(match)})}if(!this.clients.size&&this.timer){clearInterval(this.timer);this.timer=null}}
+  updatePlayer(match,p,dt){p.speedBuff=Math.max(0,(p.speedBuff||0)-dt);p.haste=Math.max(0,(p.haste||0)-dt);if(!p.alive){p.respawn-=dt;if(p.respawn<=0){p.alive=true;p.hp=p.maxHp;p.x=p.team==="blue"?145:WIDTH-145;p.y=190+p.slot*170;p.speedBuff=0;p.haste=0}return}const spec=ROLES[p.role],i=p.input,d=Math.hypot(i.x,i.y)||1;const solids=[...MAP_DATA[match.map].obstacles,...match.crates],nx=clamp(p.x+i.x/d*spec.speed*(p.speedBuff>0?1.3:1)*dt,28,WIDTH-28),ny=clamp(p.y+i.y/d*spec.speed*(p.speedBuff>0?1.3:1)*dt,28,HEIGHT-28);if(!OBJECTS.blocked(nx,p.y,28,solids))p.x=nx;if(!OBJECTS.blocked(p.x,ny,28,solids))p.y=ny;if(Math.hypot(i.ax,i.ay)>.15){const a=Math.hypot(i.ax,i.ay);p.ax=i.ax/a;p.ay=i.ay/a}p.cool=Math.max(0,p.cool-dt);p.abilityCd=Math.max(0,p.abilityCd-dt);if(i.fire&&p.cool<=0){p.cool=spec.rate*(p.haste>0?.62:1);match.bullets.push({id:++match.shotSeq,owner:p.id,team:p.team,x:p.x,y:p.y,vx:p.ax*660,vy:p.ay*660,damage:spec.damage,life:1.3})}if(i.ability&&p.abilityCd<=0){p.abilityCd=10;if(p.role==="support"){for(const ally of match.players.values())if(ally.team===p.team&&ally.alive&&Math.hypot(ally.x-p.x,ally.y-p.y)<190)ally.hp=Math.min(ally.maxHp,ally.hp+35)}else if(p.role==="tank")p.hp=Math.min(p.maxHp,p.hp+45);else p.cool=0}p.input.ability=false;p.input.auxiliary=false}
   updateBullets(match,dt){
     for(let i=match.bullets.length-1;i>=0;i--){
       const b=match.bullets[i],nx=b.x+b.vx*dt,ny=b.y+b.vy*dt;
@@ -69,16 +69,29 @@ export class ArenaCoordinator {
       }
       b.life-=dt;
       if(target){
-        if(target.destructible)target.hp=Math.max(0,target.hp-b.damage);
+        if(target.destructible){if(OBJECTS.damage(target,b.damage))match.pickups.push(OBJECTS.drop(target));}
         else if(target.team){target.hp-=b.damage;if(target.hp<=0){target.alive=false;target.respawn=3;target.deaths++;const killer=match.players.get(b.owner);if(killer){killer.kills++;match[killer.team]++;this.broadcastMatch(match,{type:"kill",killer:killer.name,victim:target.name,team:killer.team});}}}
         match.bullets.splice(i,1);continue;
       }
       b.x=nx;b.y=ny;if(b.life<=0||nx<0||nx>WIDTH||ny<0||ny>HEIGHT)match.bullets.splice(i,1);
     }
   }
-  snapshot(m){return{crates:m.crates.map(o=>({...o})),map:m.map,time:m.time,blue:m.blue,red:m.red,players:[...m.players.values()].map(this.publicPlayer),bullets:m.bullets.map(b=>({id:b.id,team:b.team,x:b.x,y:b.y})),ended:m.ended}}
+  collectPickups(match){
+    for(let i=match.pickups.length-1;i>=0;i--){
+      const item=match.pickups[i];
+      const eligible=[...match.players.values()].filter(p=>p.alive&&Math.hypot(p.x-item.x,p.y-item.y)<48&&(item.type!=="heal"||p.hp<p.maxHp));
+      eligible.sort((a,b)=>Math.hypot(a.x-item.x,a.y-item.y)-Math.hypot(b.x-item.x,b.y-item.y));
+      const p=eligible[0];if(!p)continue;
+      if(item.type==="heal")p.hp=Math.min(p.maxHp,p.hp+40);
+      else if(item.type==="speed")p.speedBuff=8;
+      else if(item.type==="haste")p.haste=8;
+      match.pickups.splice(i,1);
+    }
+  }
+  snapshot(m){return{pickups:m.pickups.map(p=>({...p})),crates:m.crates.map(o=>({...o})),map:m.map,time:m.time,blue:m.blue,red:m.red,players:[...m.players.values()].map(this.publicPlayer),bullets:m.bullets.map(b=>({id:b.id,team:b.team,x:b.x,y:b.y})),ended:m.ended}}
   endMatch(match){match.ended=true;const winner=match.blue===match.red?"draw":match.blue>match.red?"blue":"red";this.broadcastMatch(match,{type:"end",winner,world:this.snapshot(match)});setTimeout(()=>{for(const p of match.players.values()){const s=this.clients.get(p.id);if(s)s.matchId=null}this.matches.delete(match.id)},30000)}
   broadcastMatch(match,message){for(const p of match.players.values()){const s=this.clients.get(p.id);if(s)json(s.socket,message)}}
   removeFromMatch(session){const match=this.matches.get(session.matchId);if(match){match.players.delete(session.id);this.broadcastMatch(match,{type:"left",playerId:session.id,name:session.name});if(!match.players.size)this.matches.delete(match.id)}session.matchId=null}
   disconnect(session){this.waiting=this.waiting.filter(id=>id!==session.id);this.removeFromMatch(session);this.clients.delete(session.id);this.broadcastQueue()}
 }
+
