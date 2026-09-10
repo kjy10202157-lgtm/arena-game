@@ -1,9 +1,10 @@
-const CACHE = "neon-clash-v49";
+const CACHE = "neon-clash-v50";
 const ASSETS = [
   "./",
   "./index.html",
   "./style.css",
   "./game.js",
+  "./arena-obstacles.js",
   "./feedback.js",
   "./online.html",
   "./online.css",
@@ -40,3 +41,4 @@ self.addEventListener("fetch", event => {
     )
   );
 });
+

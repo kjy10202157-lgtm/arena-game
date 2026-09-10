@@ -1,0 +1,25 @@
+NEON CLASH v50 — 파괴 가능한 상자
+
+싱글/온라인: 상자 체력 100, 파괴 후 이동/탄환 통과, 새 경기 복구.
+온라인은 서버가 상자 상태를 관리하며, 기존 벽도 이동과 탄환을 차단합니다.
+기존 online-config.js(서버 주소)는 이 패키지에 없으며 그대로 유지합니다.
+서버 단위 검사 통과. 실제 6명 동시 플레이와 모바일 화면 검증은 배포 후 필요합니다.
+
+Codespaces 저장소 루트에 ZIP을 업로드하고 파일명을 확인하세요.
+터미널에서 다음 명령을 한 줄씩 실행합니다. 오류가 나오면 멈추세요.
+
+cd /workspaces/arena-game
+unzip -o neon-clash-v50-update.zip
+node cloudflare-server/test-obstacles.mjs
+cd cloudflare-server
+npm install
+npm run deploy
+cd ..
+git add arena-obstacles.js game.js online6.js index.html online.html service-worker.js .gitignore cloudflare-server UPDATE-v50.txt
+git commit -m "Add destructible crates in solo and online matches"
+git push origin main
+
+파일명이 다운로드 과정에서 달라졌다면 unzip 명령의 ZIP 이름도 바꾸세요.
+작업 중 수정한 파일이 있으면 압축을 풀기 전에 별도로 보관하세요.
+cloudflare-server는 새 서버 소스 폴더입니다. 예전 server 폴더로 배포하면 v49로 되돌아가므로 새 폴더에서 배포하세요.
+배포 후 /health의 version이 50인지 확인하고 게임을 새로고침하세요.

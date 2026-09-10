@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "neon-clash-server",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-08",
+  "durable_objects": {
+    "bindings": [
+      { "name": "ARENA", "class_name": "ArenaCoordinator" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["ArenaCoordinator"] }
+  ]
+}
