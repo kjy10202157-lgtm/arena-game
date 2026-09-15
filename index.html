@@ -14,6 +14,43 @@
   <link rel="icon" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="stylesheet" href="style.css?v=48">
+<style id="simple-start-menu-v53">
+#start-screen{overflow-y:auto;overscroll-behavior:contain;padding:18px;touch-action:pan-y}
+#start-screen .simple-menu{width:min(94vw,540px);max-height:calc(100dvh - 36px);overflow-y:auto;box-sizing:border-box;padding:28px;border-radius:26px;background:radial-gradient(ellipse at 100% 0%,#153953 0%,transparent 65%),#0c1325;border:1px solid #36516b;box-shadow:0 24px 80px #0008;text-align:left;touch-action:pan-y}
+#start-screen .simple-menu *{touch-action:pan-y}
+#start-screen .menu-kicker{font-size:10px;font-weight:800;letter-spacing:.28em;color:#75d9f8}
+#start-screen .menu-heading h1{font-size:clamp(32px,7vw,48px);line-height:1.1;letter-spacing:-.055em;margin:12px 0 8px;text-shadow:none;white-space:nowrap}
+#start-screen .menu-heading h1 em{color:#69e2ef}
+#start-screen .menu-heading p{font-size:14px;color:#a7b7ce;margin:0 0 22px}
+#start-screen .menu-selection{margin:0 0 12px;font-size:12px;color:#cad7e6;line-height:1.6}
+#start-screen .menu-primary{display:grid;gap:10px;margin-bottom:20px}
+#start-screen .simple-menu #start-button{min-height:58px;margin:0;font-size:19px;background:linear-gradient(110deg,#91f5de,#6ad5fb);box-shadow:0 6px 24px #45d8d21a;color:#092031;border-radius:14px}
+#start-screen .simple-menu .online-entry{display:flex;align-items:center;justify-content:space-between;gap:8px;box-sizing:border-box;width:100%;min-height:50px;margin:0;padding:12px 16px;border-radius:14px;border:1px solid #46617d;background:#172940;color:#e7f5ff;text-decoration:none;box-shadow:none;font-size:15px}
+#start-screen .simple-menu .online-entry small{font-size:11px;color:#a9bad0;margin:0}
+#start-screen .menu-fold{border-top:1px solid #ffffff18}
+#start-screen .menu-fold summary{min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;list-style:none;padding:8px 0;box-sizing:border-box}
+#start-screen .menu-fold summary::-webkit-details-marker{display:none}
+#start-screen .menu-fold summary:after{content:'＋';color:#79dce9;font-size:19px}
+#start-screen .menu-fold[open] summary:after{content:'−'}
+#start-screen .menu-fold summary strong{font-size:14px;color:#e7f0fc}
+#start-screen .menu-fold summary span{font-size:11px;color:#91a3bd;margin-left:auto}
+#start-screen .menu-fold-body{padding:0 0 16px}
+#start-screen .menu-fold-body h2{font-size:12px;color:#9fb7ce;margin:14px 0 8px}
+#start-screen .simple-menu #class-select,#start-screen .simple-menu #map-select,#start-screen .simple-menu #mode-select{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0}
+#start-screen .simple-menu .menu-fold-body button{min-height:48px;margin:0;padding:10px;border-radius:10px;font-size:12px;box-shadow:none}
+#start-screen .simple-menu .menu-fold-body button small{display:block;font-size:10px;line-height:1.4;margin-top:4px}
+#start-screen .menu-extra-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+#start-screen .simple-menu .profile-card{display:flex;margin-bottom:12px}
+#start-screen .simple-menu [data-open-cosmetics]{margin:10px 0;border:1px solid #567a98;background:#1a354e;color:#d8f3ff}
+#start-screen .simple-menu .start-records{margin:12px 0}
+#start-screen .menu-footer{display:flex;justify-content:space-between;gap:12px;border-top:1px solid #ffffff18;padding-top:8px}
+#start-screen .simple-menu .menu-footer button{background:transparent;border:0;box-shadow:none;color:#a7b8cf;font-size:12px;min-height:44px;margin:0;padding:8px;width:auto}
+#start-screen .simple-menu .hint{background:transparent;border:0;margin:8px 0 0;padding:0;font-size:11px;color:#7f92aa;text-align:center}
+#start-screen .simple-menu :is(button,a,summary):focus-visible{outline:3px solid #a0edff;outline-offset:3px}
+@media(max-height:550px){#start-screen .simple-menu{padding:16px 24px}.menu-heading p{display:none}#start-screen .menu-heading h1{font-size:30px;margin:6px 0}#start-screen .menu-primary{grid-template-columns:1fr 1fr;margin-bottom:10px}#start-screen .simple-menu .online-entry{display:block;text-align:center}#start-screen .simple-menu .online-entry small{display:block}#start-screen .menu-fold summary{min-height:48px}}
+@media(max-width:400px){#start-screen .simple-menu{padding:22px 18px}#start-screen .menu-fold summary span{font-size:10px}}
+
+</style>
 </head>
 <body>
   <main id="game-shell">
@@ -169,6 +206,40 @@
       window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
     }
   </script>
+<script id="simple-start-menu-script-v53">
+/* Reorganize existing controls, retaining their event handlers and saved state. */
+(()=>{
+function init(){
+const root=document.querySelector('#start-screen'),panel=root?.querySelector('.panel');
+if(!panel||panel.classList.contains('simple-menu'))return;
+const pick=s=>panel.querySelector(s);
+const start=pick('#start-button'),online=pick('.online-entry');
+if(!start||!online||!pick('#class-select')||!pick('#map-select')||!pick('#mode-select'))return;
+const header=document.createElement('div');header.className='menu-heading';
+header.innerHTML='<span class="menu-kicker">READY TO PLAY</span><h1>NEON <em>CLASH</em></h1><p>나만의 스타일로, 한 판 더.</p>';
+const summary=document.createElement('p');summary.className='menu-selection';summary.setAttribute('aria-live','polite');
+const actions=document.createElement('div');actions.className='menu-primary';
+start.textContent='게임 시작';online.innerHTML='온라인 3대3 <small>6명이 모이면 시작</small>';actions.append(start,online);
+function fold(title,description){const d=document.createElement('details');d.className='menu-fold';const s=document.createElement('summary');s.innerHTML='<strong>'+title+'</strong><span>'+description+'</span>';const body=document.createElement('div');body.className='menu-fold-body';d.append(s,body);return [d,body];}
+const [play,playBody]=fold('플레이 설정','캐릭터 · 맵 · 모드');
+for(const [selector,title] of [['#class-select','캐릭터'],['#map-select','맵'],['#mode-select','모드']]){const label=document.createElement('h2');label.textContent=title;playBody.append(label,pick(selector));}
+const [collection,collectionBody]=fold('내 캐릭터 · 기록','프로필 · 꾸미기 · 성장');
+for(const selector of ['#profile-card','[data-open-cosmetics]','.start-records']){const el=pick(selector);if(el)collectionBody.append(el);}
+const extras=document.createElement('div');extras.className='menu-extra-grid';
+for(const id of ['season-button','mission-button','upgrade-button','balance-button']){const el=pick('#'+id);if(el)extras.append(el);}collectionBody.append(extras);
+const footer=document.createElement('div');footer.className='menu-footer';
+for(const id of ['start-settings-button','test-center-button']){const el=pick('#'+id);if(el){if(id==='test-center-button')el.textContent='도움 · 버그 신고';footer.append(el);}}
+const hint=pick('.hint');
+panel.replaceChildren(header,summary,actions,play,collection,footer);if(hint)panel.append(hint);panel.classList.add('simple-menu');
+function update(){summary.textContent=['#class-select','#map-select','#mode-select'].map(s=>playBody.querySelector(s+' .selected b')?.textContent||'').filter(Boolean).join(' · ');}
+playBody.addEventListener('click',()=>queueMicrotask(update));update();
+for(const fold of [play,collection])fold.addEventListener('toggle',()=>{if(fold.open){for(const other of [play,collection])if(other!==fold)other.open=false;}});
+start.addEventListener('click',()=>{play.open=false;collection.open=false;});
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+
+</script>
 </body>
 </html>
 
