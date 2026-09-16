@@ -51,6 +51,7 @@
 @media(max-width:400px){#start-screen .simple-menu{padding:22px 18px}#start-screen .menu-fold summary span{font-size:10px}}
 
 </style>
+  <link rel="stylesheet" href="profile.css?v=54">
 </head>
 <body>
   <main id="game-shell">
@@ -106,14 +107,41 @@
       <button id="test-center-button" class="test-center-entry" type="button">🧪 게임 테스트 · 버그 신고</button>
       <a class="online-entry" href="online.html?v=49">🌐 진짜 온라인 3대3 <small>6인 서버 알파</small></a>
     </div></section>
-    <section id="profile-screen" class="overlay"><div class="panel profile-panel"><div class="eyebrow">PLAYER PROFILE</div><h2>내 프로필</h2>
-      <div class="profile-hero"><span class="profile-emblem large">N</span><div><strong id="profile-screen-level">LV.1</strong><small id="profile-rank">신입 대원</small></div></div>
-      <label for="profile-name-input">닉네임</label><div class="profile-name-row"><input id="profile-name-input" maxlength="10" autocomplete="off" placeholder="플레이어"><button id="profile-save-button" type="button">저장</button></div>
-      <div class="profile-progress"><div><span>다음 레벨</span><strong id="profile-screen-xp">0 / 100 XP</strong></div><i><em id="profile-screen-xp-fill"></em></i></div>
-      <div class="customize-section"><div><strong>캐릭터 스킨</strong><small>레벨 또는 무료 시즌 보상으로 해금하세요.</small></div><div id="skin-list" class="customize-grid skins"><button data-skin="neon" type="button"><i style="--skin:#42d8ff"></i><span>네온 블루</span></button><button data-skin="ember" type="button"><i style="--skin:#ff794d"></i><span>앰버</span></button><button data-skin="mint" type="button"><i style="--skin:#4ff0a4"></i><span>민트</span></button><button data-skin="plasma" type="button"><i style="--skin:#b26cff"></i><span>플라즈마</span></button><button data-skin="gold" type="button"><i style="--skin:#ffd45c"></i><span>골드</span></button><button data-skin="aurora" type="button"><i style="--skin:#54f0dd"></i><span>오로라</span></button><button data-skin="void" type="button"><i style="--skin:#ff62d4"></i><span>보이드</span></button></div></div>
+    <section id="profile-screen" class="overlay" aria-label="플레이어 프로필"><div class="panel profile-panel profile-v54">
+      <header class="p54-header"><div><span class="p54-eyebrow">PLAYER IDENTITY</span><h2>나의 프로필</h2></div><button id="profile-back-button" type="button" aria-label="프로필 닫기">닫기 ✕</button></header>
+      <div class="p54-tabs" role="tablist" aria-label="프로필 메뉴">
+        <button id="p54-tab-overview" role="tab" aria-selected="true" aria-controls="p54-overview" type="button" data-profile-tab="overview">내 프로필</button>
+        <button id="p54-tab-records" role="tab" aria-selected="false" aria-controls="p54-records" tabindex="-1" type="button" data-profile-tab="records">전적</button>
+        <button id="p54-tab-custom" role="tab" aria-selected="false" aria-controls="p54-custom" tabindex="-1" type="button" data-profile-tab="custom">꾸미기</button>
+      </div>
+      <article id="p54-card" class="p54-player-card" aria-label="내 프로필 카드">
+        <div class="p54-card-copy"><span class="p54-eyebrow">NEON CLASH / PLAYER CARD</span><span id="p54-title" class="p54-title">네온 개척자</span><strong id="p54-name">플레이어</strong><div class="p54-level"><b id="profile-screen-level">LV.1</b><span id="profile-rank">신입 대원</span></div><span id="p54-main-role"></span></div>
+        <div class="p54-avatar"><svg viewBox="0 0 180 180" role="img" aria-label="대표 캐릭터 미리보기"><circle class="p54-orbit" cx="90" cy="90" r="72"/><circle class="p54-orbit inner" cx="90" cy="90" r="55"/><g transform="translate(87 92) rotate(-30)"><ellipse cx="-17" cy="-26" rx="19" ry="12" fill="#122336"/><ellipse cx="-17" cy="26" rx="19" ry="12" fill="#122336"/><rect x="-31" y="-29" width="60" height="58" rx="19" class="p54-body"/><circle cx="-2" cy="0" r="17" fill="#e6fbff"/><circle cx="2" cy="0" r="8" fill="#092234"/><rect x="16" y="-9" width="61" height="18" rx="7" fill="#d7edff"/><path d="M19 0H82" stroke="var(--skin)" stroke-width="5"/></g></svg><span id="p54-avatar-role"></span></div>
+        <div id="p54-showcase" class="p54-showcase" aria-label="대표 업적 3개"></div>
+      </article>
+      <div class="profile-progress"><div><span>계정 레벨 경험치</span><strong id="profile-screen-xp">0 / 100 XP</strong></div><i><em id="profile-screen-xp-fill"></em></i></div>
+      <div id="p54-overview" role="tabpanel" aria-labelledby="p54-tab-overview">
+        <div class="p54-heading"><h3>역할별 숙련도</h3><span>경기 속 활약이 쌓여요</span></div><div id="p54-mastery" class="p54-mastery"></div>
+        <p class="p54-note">싱글플레이 완료 경기 기준 · 연습장·튜토리얼 제외<br>3단계: 역할 칭호·배지 / 5단계: 프리즘 테두리</p>
+        <div class="p54-heading"><h3>업적 전시대</h3><span id="p54-earned-count"></span></div><p class="p54-note">획득한 배지를 눌러 최대 3개까지 카드에 전시하세요.</p><div id="p54-achievements" class="p54-achievements"></div>
+      </div>
+      <div id="p54-records" role="tabpanel" aria-labelledby="p54-tab-records" hidden>
+        <div class="p54-heading"><h3>누적 기록</h3><span>싱글플레이</span></div><div class="profile-stats"><div><span>경기</span><strong id="profile-matches">0</strong></div><div><span>승리</span><strong id="profile-wins">0</strong></div><div><span>처치</span><strong id="profile-kills">0</strong></div><div><span>보스 격파</span><strong id="profile-boss-wins">0</strong></div></div>
+
+        <p id="p54-favorite" class="p54-note"></p><div class="p54-heading"><h3>최근 경기</h3><span>최근 10경기</span></div><div id="p54-history"></div><p class="p54-note">상세 전적과 역할별 기록은 이번 업데이트 이후부터 쌓입니다.</p>
+      </div>
+      <div id="p54-custom" role="tabpanel" aria-labelledby="p54-tab-custom" hidden>
+        <label for="profile-name-input">닉네임</label><div class="profile-name-row"><input id="profile-name-input" maxlength="10" autocomplete="off" placeholder="플레이어"><button id="profile-save-button" type="button">저장</button></div>
+        <div class="p54-heading"><h3>대표 캐릭터</h3><span>프로필 카드에 표시</span></div><div id="p54-role-options" class="p54-options"></div>
+        <div class="p54-heading"><h3>카드 배경</h3></div><div id="p54-theme-options" class="p54-options three"></div>
+        <div class="p54-heading"><h3>포인트 색상</h3></div><div id="p54-accent-options" class="p54-options"></div>
+        <div class="p54-heading"><h3>테두리</h3></div><div id="p54-frame-options" class="p54-options two"></div>
+        <div class="p54-heading"><h3>대표 칭호</h3><span>역할별 숙련도 3단계 해금</span></div><div id="p54-title-options" class="p54-options two"></div>
+        <div class="customize-section"><div><strong>캐릭터 스킨</strong><small>레벨 또는 무료 시즌 보상으로 해금하세요.</small></div><div id="skin-list" class="customize-grid skins"><button data-skin="neon" type="button"><i style="--skin:#42d8ff"></i><span>네온 블루</span></button><button data-skin="ember" type="button"><i style="--skin:#ff794d"></i><span>앰버</span></button><button data-skin="mint" type="button"><i style="--skin:#4ff0a4"></i><span>민트</span></button><button data-skin="plasma" type="button"><i style="--skin:#b26cff"></i><span>플라즈마</span></button><button data-skin="gold" type="button"><i style="--skin:#ffd45c"></i><span>골드</span></button><button data-skin="aurora" type="button"><i style="--skin:#54f0dd"></i><span>오로라</span></button><button data-skin="void" type="button"><i style="--skin:#ff62d4"></i><span>보이드</span></button></div></div>
       <div class="customize-section"><div><strong>이름표 배지</strong><small>캐릭터 이름 앞에 표시됩니다.</small></div><div id="badge-list" class="customize-grid badges"><button data-badge="star" type="button">★ 별</button><button data-badge="bolt" type="button">⚡ 번개</button><button data-badge="shield" type="button">◆ 방패</button><button data-badge="crown" type="button">♛ 왕관</button><button data-badge="pioneer" type="button">✦ 개척자</button></div></div>
-      <div class="profile-stats"><div><span>경기</span><strong id="profile-matches">0</strong></div><div><span>승리</span><strong id="profile-wins">0</strong></div><div><span>처치</span><strong id="profile-kills">0</strong></div><div><span>보스 격파</span><strong id="profile-boss-wins">0</strong></div></div>
-      <p id="profile-message">경기를 플레이하면 경험치를 획득합니다.</p><button id="profile-back-button" type="button">완료</button>
+
+      </div>
+      <p id="profile-message" role="status" aria-live="polite"></p><p class="p54-storage">프로필은 이 브라우저에 저장됩니다.</p>
     </div></section>
     <section id="pause-screen" class="overlay"><div class="panel compact"><div class="eyebrow">PAUSED</div><h2>일시정지</h2><button id="resume-button" type="button">계속하기</button><button id="pause-settings-button" class="secondary" type="button">⚙ 설정</button><button id="restart-button" class="secondary" type="button">경기 다시 시작</button><button id="selection-button" class="secondary" type="button">역할 선택으로 나가기</button></div></section>
     <section id="settings-screen" class="overlay"><div class="panel compact settings-panel"><div class="eyebrow">SETTINGS</div><h2>게임 설정</h2>
@@ -187,7 +215,7 @@
       <div class="saved-reports"><div><h3>저장된 신고</h3><button id="bug-clear-button" type="button">전체 삭제</button></div><div id="bug-report-list"></div></div>
       <button id="test-center-back-button" type="button">완료</button>
     </div></section>
-    <section id="result-screen" class="overlay"><div class="panel compact result-panel"><div class="eyebrow">MATCH OVER</div><h2 id="result-title">승리!</h2><p id="result-score"></p>
+    <section id="result-screen" class="overlay"><div class="panel compact result-panel"><div class="eyebrow">MATCH OVER</div><h2 id="result-title">승리!</h2><p id="result-mastery" class="p54-result-mastery" hidden></p><p id="result-score"></p>
       <div class="result-stats" aria-label="경기 통계">
         <div><span>경기 시간</span><strong id="stat-time">0.0초</strong></div>
         <div><span>처치</span><strong id="stat-kills">0</strong></div>
@@ -199,10 +227,12 @@
       <div id="result-best" class="result-best">⚡ 최단 승리 기록 없음</div><div class="result-rewards"><div id="result-xp" class="result-xp">⭐ +0 XP</div><div id="result-coins" class="result-coins">🪙 +0 네온 코인</div><div id="result-season-xp" class="result-season-xp">🌌 +0 시즌 XP</div></div><button id="play-again-button" type="button">역할 다시 선택</button></div></section>
   </main>
   <script src="arena-obstacles.js?v=51"></script>
-<script src="game.js?v=51"></script>
+<script src="profile-system.js?v=54"></script>
+<script src="game.js?v=54"></script>
+<script src="profile-ui.js?v=54"></script>
   <script src="feedback.js?v=46"></script>
   <script>
-    if ("serviceWorker" in navigator) {
+    if ("serviceWorker" in navigator && location.protocol !== "file:") {
       window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js"));
     }
   </script>
@@ -242,5 +272,6 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 </script>
 </body>
 </html>
+
 
 
